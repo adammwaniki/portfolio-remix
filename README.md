@@ -10,6 +10,6 @@ In the wise words of DJ Khaled, I present to you "another one".
 
 This website is built using the GOTH stack:
 
-- Go: an open-source, statically-typed and commpiled language.
+- Go: an open-source, statically-typed and compiled language designed with systems programming in mind.
 - Templ: an open-source HTML templating language for Go.
 - HTMX: an open-source front-end JavaScript library that gives you access to AJAX, CSS Transitions, WebSockets and Server Sent Events directly in HTML
