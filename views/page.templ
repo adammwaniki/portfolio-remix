@@ -1,0 +1,26 @@
+package views
+
+templ Page(nav bool) {
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Mwaniki's Portfolio</title>
+            <meta charset="UTF-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js" integrity="sha384-Akqfrbj/HpNVo8k11SXBb6TlBWmXXlYQrCSqEWmyKJe+hDm3Z/B2WVG4smwBkRVm" crossorigin="anonymous"></script>
+            <link rel="stylesheet" href="/public/styles.css">
+        </head>
+        <body>
+            if nav {
+                <nav class="">
+                    <a href="/" class="ml-6">Home</a>
+                    <a href="/" class="ml-6">Projects</a>
+                    <a href="/" class="ml-6">R&#233;sum&#233;</a>
+                    <a href="/" class="ml-6">Blog</a>
+                    <a href="/" class="ml-6">Contact</a>
+                </nav>
+            }
+            { children...}
+        </body>
+    </html>
+}
