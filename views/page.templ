@@ -1,25 +1,18 @@
 package views
 
-templ Page(nav bool) {
+templ Page() {
     <!DOCTYPE html>
     <html lang="en">
         <head>
-            <title>Mwaniki's Portfolio</title>
+            <title>Adam Mwaniki Ndegwa</title>
             <meta charset="UTF-8"/>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js" integrity="sha384-Akqfrbj/HpNVo8k11SXBb6TlBWmXXlYQrCSqEWmyKJe+hDm3Z/B2WVG4smwBkRVm" crossorigin="anonymous"></script>
             <link rel="stylesheet" href="/public/styles.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" />
         </head>
-        <body class="bg-white text-gray-800 font-sans">
-            if nav {
-                <nav class="flex space-x-6 p-4 bg-gray-100 text-sm font-medium" aria-label="Main Navigation">
-                    <a href="/" class="hover:underline">Home</a>
-                    <a href="/projects" hx-get="/projects" hx-target="main" hx-push-url="true" class="hover:underline">Projects</a>
-                    <a href="/resume" class="hover:underline">R&#233;sum&#233;</a>
-                    <a href="/blog" class="hover:underline">Blog</a>
-                    <a href="/contact" class="hover:underline">Contact</a>
-                </nav>
-            }
+        <body class="bg-[#ffffff] font-ubuntu">
+            @Header()    
             <main class="px-4 max-w-4xl mx-auto">
                { children...}
             </main>
