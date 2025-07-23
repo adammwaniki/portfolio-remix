@@ -29,7 +29,7 @@ func Landing() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"flex box-content \"><div class=\"flex\"></div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"flex h-(--frame-height) my-[20px] mx-[24px] outline-[4px] md:outline-[6px]\"><div class=\"flex flex-col justify-around text-center bg-white border-x-[0.5px] border-x-[#d9d9d9] rounded-sm w-[304px] h-[208px] mx-[44px] my-[44px] px-4\"><h2 class=\"uppercase font-medium text-xl\">Software Developer</h2><h2 class=\"uppercase font-bold text-3xl\">Adam <br>Mwaniki</h2><h2 class=\"font-normal text-sm\">A Full Stack Developer crafting exceptional web experiences with cutting-edge technologies.</h2></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -2,8 +2,9 @@
 @import "tailwindcss";
 
 /*fonts*/
-@theme {
+:root {
     --font-ubuntu: "Ubuntu", sans-serif; 
+    --frame-height: calc(100svh - 104px);
 }
 
 /*menu icon*/
