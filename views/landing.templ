@@ -1,12 +1,15 @@
 package views
 
 templ Landing() {
-    <div class="flex h-(--frame-height) my-[20px] mx-[24px] outline-[4px] md:outline-[6px]">
-        // The Intro/Title/Subtitle section --I should find a way to dynamically fill it
-        <div class="flex flex-col justify-around text-center bg-white border-x-[0.5px] border-x-[#d9d9d9] rounded-sm w-[304px] h-[208px] mx-[44px] my-[44px] px-4">
-            <h2 class="uppercase font-medium text-xl"> Software Developer</h2>
-            <h2 class="uppercase font-bold text-3xl">Adam <br>Mwaniki</h2>
-            <h2 class="font-normal text-sm">A Full Stack Developer crafting exceptional web experiences with cutting-edge technologies.</h2>
+    <div class="flex flex-col h-(--frame-height) my-[20px] mx-[24px] outline-[4px] md:outline-[6px]">
+        // The Intro/Language icons section
+        <div class="flex flex-col w-full md:w-1/2">
+            // The Intro/Title/Subtitle section --I should find a way to dynamically fill it
+            <div class="flex flex-col justify-around text-center bg-white border-x-[0.5px] border-x-[#d9d9d9] rounded-sm w-[304px] h-[208px] mx-auto sm:mx-[44px] my-[44px] px-4">
+                <h2 class="uppercase font-medium text-xl"> Software Developer</h2>
+                <h2 class="uppercase font-bold text-3xl">Adam <br>Mwaniki</h2>
+                <h2 class="font-normal text-sm">A Full Stack Developer crafting exceptional web experiences with cutting-edge technologies.</h2>
+            </div>
         </div>
     </div>
 }
