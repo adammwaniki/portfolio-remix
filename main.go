@@ -24,8 +24,9 @@ func main() {
     })
     */
 
-    // Serve Tailwind CSS and any other static assets
+    // Serve Tailwind CSS and any other assets e.g., static, public etc.
     mux.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("public"))))
+    mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	mux.Handle("/favicon.ico", http.FileServer(http.Dir("public")))
 
 
