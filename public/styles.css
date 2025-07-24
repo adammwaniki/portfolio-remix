@@ -28,6 +28,7 @@
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
     --radius-sm: 0.25rem;
+    --radius-lg: 0.5rem;
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
   }
@@ -190,9 +191,6 @@
   .mx-\[24px\] {
     margin-inline: 24px;
   }
-  .mx-\[44px\] {
-    margin-inline: 44px;
-  }
   .mx-auto {
     margin-inline: auto;
   }
@@ -205,17 +203,23 @@
   .my-12 {
     margin-block: calc(var(--spacing) * 12);
   }
+  .my-\[4px\] {
+    margin-block: 4px;
+  }
   .my-\[20px\] {
     margin-block: 20px;
-  }
-  .my-\[44px\] {
-    margin-block: 44px;
   }
   .mt-12 {
     margin-top: calc(var(--spacing) * 12);
   }
   .mt-\[5px\] {
     margin-top: 5px;
+  }
+  .mt-\[22px\] {
+    margin-top: 22px;
+  }
+  .mt-\[44px\] {
+    margin-top: 44px;
   }
   .mr-\[34\.4px\] {
     margin-right: 34.4px;
@@ -226,9 +230,6 @@
   .ml-\[24px\] {
     margin-left: 24px;
   }
-  .box-border {
-    box-sizing: border-box;
-  }
   .box-content {
     box-sizing: content-box;
   }
@@ -237,6 +238,9 @@
   }
   .flex {
     display: flex;
+  }
+  .grid {
+    display: grid;
   }
   .table {
     display: table;
@@ -248,11 +252,47 @@
   .h-\(--frame-height\) {
     height: var(--frame-height);
   }
+  .h-1 {
+    height: calc(var(--spacing) * 1);
+  }
+  .h-1\/2 {
+    height: calc(1/2 * 100%);
+  }
+  .h-\[30px\] {
+    height: 30px;
+  }
+  .h-\[32px\] {
+    height: 32px;
+  }
   .h-\[64px\] {
     height: 64px;
   }
   .h-\[208px\] {
     height: 208px;
+  }
+  .max-h-1 {
+    max-height: calc(var(--spacing) * 1);
+  }
+  .max-h-1\/2 {
+    max-height: calc(1/2 * 100%);
+  }
+  .w-\[24\.76px\] {
+    width: 24.76px;
+  }
+  .w-\[26\.25px\] {
+    width: 26.25px;
+  }
+  .w-\[30\.92px\] {
+    width: 30.92px;
+  }
+  .w-\[30px\] {
+    width: 30px;
+  }
+  .w-\[38\.01px\] {
+    width: 38.01px;
+  }
+  .w-\[76px\] {
+    width: 76px;
   }
   .w-\[304px\] {
     width: 304px;
@@ -281,11 +321,11 @@
   .list-disc {
     list-style-type: disc;
   }
+  .grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
   .flex-col {
     flex-direction: column;
-  }
-  .content-center {
-    align-content: center;
   }
   .items-center {
     align-items: center;
@@ -299,18 +339,15 @@
   .justify-center {
     justify-content: center;
   }
-  .justify-center-safe {
-    justify-content: safe center;
-  }
-  .justify-items-center {
-    justify-items: center;
-  }
   .space-y-2 {
     :where(& > :not(:last-child)) {
       --tw-space-y-reverse: 0;
       margin-block-start: calc(calc(var(--spacing) * 2) * var(--tw-space-y-reverse));
       margin-block-end: calc(calc(var(--spacing) * 2) * calc(1 - var(--tw-space-y-reverse)));
     }
+  }
+  .gap-x-\[20px\] {
+    column-gap: 20px;
   }
   .space-x-3 {
     :where(& > :not(:last-child)) {
@@ -326,6 +363,12 @@
       margin-inline-end: calc(calc(var(--spacing) * 6) * calc(1 - var(--tw-space-x-reverse)));
     }
   }
+  .gap-y-\[5px\] {
+    row-gap: 5px;
+  }
+  .place-self-center {
+    place-self: center;
+  }
   .truncate {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -333,6 +376,9 @@
   }
   .rounded {
     border-radius: 0.25rem;
+  }
+  .rounded-lg {
+    border-radius: var(--radius-lg);
   }
   .rounded-sm {
     border-radius: var(--radius-sm);
@@ -421,9 +467,16 @@
     outline-style: var(--tw-outline-style);
     outline-width: 1px;
   }
+  .outline-\[0\.5px\] {
+    outline-style: var(--tw-outline-style);
+    outline-width: 0.5px;
+  }
   .outline-\[4px\] {
     outline-style: var(--tw-outline-style);
     outline-width: 4px;
+  }
+  .outline-\[\#d9d9d9\] {
+    outline-color: #d9d9d9;
   }
   .hover\:bg-blue-700 {
     &:hover {
@@ -439,24 +492,14 @@
       }
     }
   }
-  .sm\:mx-\[24px\] {
+  .sm\:h-1\/2 {
     @media (width >= 40rem) {
-      margin-inline: 24px;
+      height: calc(1/2 * 100%);
     }
   }
-  .sm\:mx-\[44px\] {
+  .sm\:h-full {
     @media (width >= 40rem) {
-      margin-inline: 44px;
-    }
-  }
-  .sm\:my-\[20px\] {
-    @media (width >= 40rem) {
-      margin-block: 20px;
-    }
-  }
-  .sm\:my-\[44px\] {
-    @media (width >= 40rem) {
-      margin-block: 44px;
+      height: 100%;
     }
   }
   .sm\:w-1\/2 {
@@ -464,9 +507,74 @@
       width: calc(1/2 * 100%);
     }
   }
-  .md\:w-1\/2 {
+  .sm\:content-center {
+    @media (width >= 40rem) {
+      align-content: center;
+    }
+  }
+  .sm\:content-evenly {
+    @media (width >= 40rem) {
+      align-content: space-evenly;
+    }
+  }
+  .sm\:justify-center {
+    @media (width >= 40rem) {
+      justify-content: center;
+    }
+  }
+  .sm\:sm\:space-y-\(--intro-techstack-spacing\) {
+    @media (width >= 40rem) {
+      @media (width >= 40rem) {
+        :where(& > :not(:last-child)) {
+          --tw-space-y-reverse: 0;
+          margin-block-start: calc(var(--intro-techstack-spacing) * var(--tw-space-y-reverse));
+          margin-block-end: calc(var(--intro-techstack-spacing) * calc(1 - var(--tw-space-y-reverse)));
+        }
+      }
+    }
+  }
+  .sm\:space-y-\(--intro-techstack-spacing\) {
+    @media (width >= 40rem) {
+      :where(& > :not(:last-child)) {
+        --tw-space-y-reverse: 0;
+        margin-block-start: calc(var(--intro-techstack-spacing) * var(--tw-space-y-reverse));
+        margin-block-end: calc(var(--intro-techstack-spacing) * calc(1 - var(--tw-space-y-reverse)));
+      }
+    }
+  }
+  .sm\:gap-y-4 {
+    @media (width >= 40rem) {
+      row-gap: calc(var(--spacing) * 4);
+    }
+  }
+  .sm\:gap-y-6 {
+    @media (width >= 40rem) {
+      row-gap: calc(var(--spacing) * 6);
+    }
+  }
+  .md\:my-auto {
     @media (width >= 48rem) {
-      width: calc(1/2 * 100%);
+      margin-block: auto;
+    }
+  }
+  .md\:mt-auto {
+    @media (width >= 48rem) {
+      margin-top: auto;
+    }
+  }
+  .md\:mb-auto {
+    @media (width >= 48rem) {
+      margin-bottom: auto;
+    }
+  }
+  .md\:h-1\/2 {
+    @media (width >= 48rem) {
+      height: calc(1/2 * 100%);
+    }
+  }
+  .md\:place-self-center {
+    @media (width >= 48rem) {
+      place-self: center;
     }
   }
   .md\:text-2xl {
@@ -481,10 +589,16 @@
       outline-width: 6px;
     }
   }
+  .lg\:mt-auto {
+    @media (width >= 64rem) {
+      margin-top: auto;
+    }
+  }
 }
 :root {
   --font-ubuntu: "Ubuntu", sans-serif;
   --frame-height: calc(100svh - 104px);
+  --intro-techstack-spacing: calc(70svh * 3/20);
 }
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 200, 'opsz' 40;
