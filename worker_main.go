@@ -1,30 +1,21 @@
 package main
 
 import (
-    "context"
-    "log"
     "os"
-    "path/filepath"
-
+    "log"
     "github.com/adammwaniki/portfolio-remix/views"
+
+    "github.com/a-h/templ"
 )
 
 func main() {
-    // Ensure the dist directory exists
-    err := os.MkdirAll("dist", 0755)
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    f, err := os.Create(filepath.Join("dist", "index.html"))
+    f, err := os.Create("dist/index.html")
     if err != nil {
         log.Fatal(err)
     }
     defer f.Close()
 
-    page := views.Page() // call the function to get templ.Component
-
-    err = page.Render(context.Background(), f)
+    err = templ.Execute(f, views.Page())
     if err != nil {
         log.Fatal(err)
     }
