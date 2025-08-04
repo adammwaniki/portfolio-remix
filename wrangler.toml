@@ -1,4 +1,5 @@
 name = "portfolio-remix"
+main = "./404.js"  # fake entry point to suppress warnings — not used
 compatibility_date = "2025-08-04"
 
 # This section is required for static uploads using --assets
