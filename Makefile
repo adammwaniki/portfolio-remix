@@ -11,3 +11,9 @@ templ:
 
 dev:
 	@make -j2 tailwind templ run
+
+build:
+	go run worker_main.go
+	mkdir -p dist
+	cp -r public/* dist/
+	cp -r static/* dist/
