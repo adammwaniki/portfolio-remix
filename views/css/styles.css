@@ -10,7 +10,7 @@
     /*Intro/Tech-stack spacing*/
     --intro-techstack-spacing: calc(70svh * 3/20);
     /*desk lottie height*/
-    --desk-lottie-height: calc(100dvh * 3/20);
+    --desk-lottie-height: calc(100dvh * 1/4);
 }
 
 /*menu icon*/
