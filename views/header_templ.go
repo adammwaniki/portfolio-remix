@@ -29,7 +29,7 @@ func Header() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<nav class=\"box-content h-[64px] w-full flex justify-between items-center bg-[#f5f5f5] text-black\"><div class=\"flex space-x-3\"><img class=\"size-[40px] ml-[24px]\" src=\"/images/human.png\" alt=\"home icon\" aria-label=\"home icon with a human face\"><h1 class=\"font-ubuntu uppercase font-semibold text-xl md:text-2xl mt-[5px]\">Mwaniki</h1></div><span class=\"material-symbols-outlined mr-[34.4px]\">menu</span></nav>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<nav class=\"box-content h-[64px] w-full flex justify-between items-center bg-[#f5f5f5] text-black\"><div class=\"flex space-x-3\"><img class=\"size-[24px] ml-[24px]\" src=\"/images/human.png\" alt=\"home icon\" aria-label=\"home icon with a human face\"><h1 class=\"font-ubuntu uppercase font-semibold text-xl md:text-2xl mt-[5px]\">Mwaniki</h1></div><span class=\"material-symbols-outlined mr-[34.4px]\">menu</span></nav>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

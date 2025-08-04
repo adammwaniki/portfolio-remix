@@ -5,7 +5,7 @@
 :root {
     --font-ubuntu: "Ubuntu", sans-serif; 
     /*picture frame height*/
-    --frame-height: calc(100svh - 104px);
+    --frame-height: calc(100dvh - 84px);
     /*Intro/Tech-stack spacing*/
     --intro-techstack-spacing: calc(70svh * 3/20)
 }
