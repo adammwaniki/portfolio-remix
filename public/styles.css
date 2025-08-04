@@ -510,6 +510,11 @@
       height: var(--frame-height);
     }
   }
+  .sm\:h-\[64px\] {
+    @media (width >= 40rem) {
+      height: 64px;
+    }
+  }
   .sm\:h-\[84px\] {
     @media (width >= 40rem) {
       height: 84px;
