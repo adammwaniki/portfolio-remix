@@ -3,7 +3,7 @@ package views
 templ Landing() {
     <div class="flex flex-col sm:flex-row h-(--frame-height-phone) sm:h-(--frame-height) font-ubuntu mt-[10px] mb-[20px] mx-[24px] outline-[4px] md:outline-[6px]">
         // The Intro/Tech-stack section
-        <div class="flex flex-col w-full sm:h-full sm:justify-center space-y-(--intro-lottie-spacing) sm:space-y-(--intro-techstack-spacing) sm:w-1/2">
+        <div class="flex flex-col w-full sm:h-full sm:justify-center sm:space-y-(--intro-techstack-spacing) sm:w-1/2">
             // The Intro/Title/Subtitle section --I should find a way to dynamically fill it
             <div class="flex flex-col justify-around text-center bg-white border-x-[0.5px] border-x-[#d9d9d9] rounded-sm w-[304px] h-[208px] mx-auto mt-[44px] px-4 place-self-center">
                 <h2 class="uppercase font-medium text-xl"> Software Developer</h2>
@@ -37,7 +37,7 @@ templ Landing() {
         </div>
 
         // Lottifile/CTA section
-        <div class="flex flex-col w-full sm:w-1/2 sm:h-full sm:justify-center space-y-(--intro-lottie-spacing) sm:space-y-(--intro-techstack-spacing)">
+        <div class="flex flex-col w-full sm:w-1/2 sm:h-full sm:justify-center sm:space-y-(--intro-techstack-spacing)">
             // Lottiefile
             <div class="flex justify-center">
                 <canvas id="canvas" class="w-full max-h-[247px] h-(--desk-lottie-height)"></canvas>
