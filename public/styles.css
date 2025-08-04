@@ -206,11 +206,8 @@
   .my-\[4px\] {
     margin-block: 4px;
   }
-  .my-\[20px\] {
-    margin-block: 20px;
-  }
-  .my-\[24px\] {
-    margin-block: 24px;
+  .my-\[10px\] {
+    margin-block: 10px;
   }
   .mt-12 {
     margin-top: calc(var(--spacing) * 12);
@@ -230,9 +227,6 @@
   .mb-4 {
     margin-bottom: calc(var(--spacing) * 4);
   }
-  .mb-\[20px\] {
-    margin-bottom: 20px;
-  }
   .ml-\[24px\] {
     margin-left: 24px;
   }
@@ -245,18 +239,12 @@
   .grid {
     display: grid;
   }
-  .table {
-    display: table;
-  }
   .size-\[24px\] {
     width: 24px;
     height: 24px;
   }
   .h-\(--frame-height\) {
     height: var(--frame-height);
-  }
-  .h-\[4px\] {
-    height: 4px;
   }
   .h-\[30px\] {
     height: 30px;
@@ -267,20 +255,11 @@
   .h-\[44px\] {
     height: 44px;
   }
-  .h-\[64px\] {
-    height: 64px;
-  }
-  .h-\[84px\] {
-    height: 84px;
-  }
   .h-\[208px\] {
     height: 208px;
   }
   .h-\[247px\] {
     height: 247px;
-  }
-  .max-h-\[64px\] {
-    max-height: 64px;
   }
   .w-\[24\.76px\] {
     width: 24.76px;
@@ -306,14 +285,8 @@
   .w-full {
     width: 100%;
   }
-  .border-collapse {
-    border-collapse: collapse;
-  }
   .transform {
     transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
-  }
-  .resize {
-    resize: both;
   }
   .list-inside {
     list-style-position: inside;
@@ -471,13 +444,6 @@
   .uppercase {
     text-transform: uppercase;
   }
-  .underline {
-    text-decoration-line: underline;
-  }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
-  }
   .outline-\[0\.5px\] {
     outline-style: var(--tw-outline-style);
     outline-width: 0.5px;
@@ -549,12 +515,6 @@
       height: 84px;
     }
   }
-  .md\:text-2xl {
-    @media (width >= 48rem) {
-      font-size: var(--text-2xl);
-      line-height: var(--tw-leading, var(--text-2xl--line-height));
-    }
-  }
   .md\:text-xl {
     @media (width >= 48rem) {
       font-size: var(--text-xl);
@@ -572,9 +532,6 @@
   --font-ubuntu: "Ubuntu", sans-serif;
   --frame-height: calc(100dvh - 84px);
   --intro-techstack-spacing: calc(70svh * 3/20);
-}
-.material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 40;
 }
 @property --tw-rotate-x {
   syntax: "*";
