@@ -1,5 +1,5 @@
 name = "portfolio-remix"
-"compatibility_date":"2025-08-04"
+compatibility_date = "2025-08-04"
 
 # This section is required for static uploads using --assets
 [site]
