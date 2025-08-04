@@ -1,0 +1,7 @@
+name = "portfolio-site"
+type = "javascript"
+
+build.command = "make build"
+build.cwd = "."
+site.bucket = "./dist"
+compatibility_date = "2025-08-04"
