@@ -255,6 +255,9 @@
   .h-\(--frame-height\) {
     height: var(--frame-height);
   }
+  .h-\[4px\] {
+    height: 4px;
+  }
   .h-\[30px\] {
     height: 30px;
   }
@@ -539,6 +542,11 @@
   .sm\:gap-y-6 {
     @media (width >= 40rem) {
       row-gap: calc(var(--spacing) * 6);
+    }
+  }
+  .md\:h-\[84px\] {
+    @media (width >= 48rem) {
+      height: 84px;
     }
   }
   .md\:text-2xl {
