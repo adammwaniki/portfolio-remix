@@ -230,6 +230,9 @@
   .mb-4 {
     margin-bottom: calc(var(--spacing) * 4);
   }
+  .mb-\[20px\] {
+    margin-bottom: 20px;
+  }
   .ml-\[24px\] {
     margin-left: 24px;
   }
