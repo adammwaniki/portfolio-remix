@@ -1,4 +1,6 @@
 node_modules/
-
+dist/
+tmp/
+.air.toml
 # Ignore temp folders
 temp/404.js

@@ -1,0 +1,50 @@
+name: Build and Push to dist Branch
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.24'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Tailwind CLI
+        run: npm install -D tailwindcss
+
+      - name: Generate templ files
+        run: go run github.com/a-h/templ/cmd/templ@latest generate
+
+      - name: Build site
+        run: |
+          go run worker_main.go
+          mkdir -p dist
+          cp -r public/* dist/
+          cp -r static/* dist/
+
+      - name: Add commit hash to footer
+        run: |
+          echo "<!-- Commit: $(git rev-parse --short HEAD) -->" >> dist/index.html
+
+      - name: Push to dist branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: dist
+          force_orphan: true

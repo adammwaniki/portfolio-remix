@@ -182,9 +182,6 @@
   }
 }
 @layer utilities {
-  .collapse {
-    visibility: collapse;
-  }
   .static {
     position: static;
   }
@@ -208,9 +205,6 @@
   }
   .my-\[4px\] {
     margin-block: 4px;
-  }
-  .my-\[20px\] {
-    margin-block: 20px;
   }
   .mt-12 {
     margin-top: calc(var(--spacing) * 12);
@@ -236,9 +230,6 @@
   .box-content {
     box-sizing: content-box;
   }
-  .block {
-    display: block;
-  }
   .flex {
     display: flex;
   }
@@ -252,10 +243,6 @@
     width: 24px;
     height: 24px;
   }
-  .size-\[40px\] {
-    width: 40px;
-    height: 40px;
-  }
   .h-\(--frame-height\) {
     height: var(--frame-height);
   }
@@ -268,14 +255,14 @@
   .h-\[44px\] {
     height: 44px;
   }
-  .h-\[64px\] {
-    height: 64px;
-  }
   .h-\[208px\] {
     height: 208px;
   }
   .h-\[247px\] {
     height: 247px;
+  }
+  .max-h-\[64px\] {
+    max-height: 64px;
   }
   .w-\[24\.76px\] {
     width: 24.76px;
@@ -300,12 +287,6 @@
   }
   .w-full {
     width: 100%;
-  }
-  .flex-grow {
-    flex-grow: 1;
-  }
-  .grow {
-    flex-grow: 1;
   }
   .border-collapse {
     border-collapse: collapse;
@@ -375,11 +356,6 @@
   }
   .place-self-center {
     place-self: center;
-  }
-  .truncate {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
   .rounded {
     border-radius: 0.25rem;
@@ -556,6 +532,12 @@
       line-height: var(--tw-leading, var(--text-2xl--line-height));
     }
   }
+  .md\:text-xl {
+    @media (width >= 48rem) {
+      font-size: var(--text-xl);
+      line-height: var(--tw-leading, var(--text-xl--line-height));
+    }
+  }
   .md\:outline-\[6px\] {
     @media (width >= 48rem) {
       outline-style: var(--tw-outline-style);
@@ -569,7 +551,7 @@
   --intro-techstack-spacing: calc(70svh * 3/20);
 }
 .material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 200, 'opsz' 40;
+  font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 40;
 }
 @property --tw-rotate-x {
   syntax: "*";
