@@ -6,16 +6,17 @@
     --font-ubuntu: "Ubuntu", sans-serif; 
     /*picture frame height*/
     --frame-height: calc(100dvh - 84px);
+    --frame-height-phone: calc(100dvh - 64px);
     /*Intro/Tech-stack spacing*/
     --intro-techstack-spacing: calc(70svh * 3/20)
 }
 
-/*menu icon
-.material-symbols-outlined {
+/*menu icon*/
+#material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
   'wght' 500,
-  'GRAD' 0,
+  'GRAD' 200,
   'opsz' 40
 }
-*/
+

@@ -243,8 +243,8 @@
     width: 24px;
     height: 24px;
   }
-  .h-\(--frame-height\) {
-    height: var(--frame-height);
+  .h-\(--frame-height-phone\) {
+    height: var(--frame-height-phone);
   }
   .h-\[30px\] {
     height: 30px;
@@ -476,6 +476,11 @@
       }
     }
   }
+  .sm\:h-\(--frame-height\) {
+    @media (width >= 40rem) {
+      height: var(--frame-height);
+    }
+  }
   .sm\:h-full {
     @media (width >= 40rem) {
       height: 100%;
@@ -531,7 +536,11 @@
 :root {
   --font-ubuntu: "Ubuntu", sans-serif;
   --frame-height: calc(100dvh - 84px);
+  --frame-height-phone: calc(100dvh - 64px);
   --intro-techstack-spacing: calc(70svh * 3/20);
+}
+#material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 200, 'opsz' 40;
 }
 @property --tw-rotate-x {
   syntax: "*";
