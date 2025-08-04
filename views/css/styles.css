@@ -8,11 +8,13 @@
     --frame-height: calc(100dvh - 84px);
     --frame-height-phone: calc(100dvh - 64px);
     /*Intro/Tech-stack spacing*/
-    --intro-techstack-spacing: calc(70svh * 3/20)
+    --intro-techstack-spacing: calc(70svh * 3/20);
+    /*desk lottie height*/
+    --desk-lottie-height: calc(100dvh * 3/20);
 }
 
 /*menu icon*/
-#material-symbols-outlined {
+.material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
   'wght' 400,
