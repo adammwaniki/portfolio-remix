@@ -13,6 +13,7 @@ dev:
 	@make -j2 tailwind templ run
 
 build:
+	templ generate
 	go run worker_main.go
 	mkdir -p dist
 	cp -r public/* dist/
