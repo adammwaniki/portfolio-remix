@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=menu');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,500,0,0&icon_names=folder');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,500,0,200&icon_names=mail');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL,GRAD,opsz,wght@0,0,24,400&display=swap');
 @import "tailwindcss";
 
 /*fonts*/
@@ -21,27 +19,39 @@
     --abt-page-p-height: calc(65dvh);
 }
 
-/*menu icon*/
-.material-symbols-outlined #menu-icon {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24
+/* Icon font styling */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  font-weight: normal;
+  font-variation-settings: 
+    'FILL' 0, 
+    'wght' 400, 
+    'GRAD' 0, 
+    'opsz' 24;
 }
-/*folder icon*/
-.material-symbols-outlined #folder-icon {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 500,
-  'GRAD' 200,
-  'opsz' 40
+
+/* Individual icons by ID */
+#menu-icon {
+  font-variation-settings: 
+    'FILL' 0, 
+    'wght' 400, 
+    'GRAD' 0, 
+    'opsz' 24;
 }
-/*mail icon*/
-.material-symbols-outlined #mail-icon {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 500,
-  'GRAD' 200,
-  'opsz' 40
+
+#folder-icon {
+  font-variation-settings: 
+    'FILL' 0, 
+    'wght' 500, 
+    'GRAD' 200, 
+    'opsz' 40;
+}
+
+#contact_mail-icon {
+  font-variation-settings: 
+    'FILL' 0, 
+    'wght' 500, 
+    'GRAD' 200, 
+    'opsz' 40;
 }
