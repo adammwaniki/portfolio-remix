@@ -1,9 +1,9 @@
 package views
 
 templ Landing() {
-    <section class="flex flex-col sm:flex-row h-(--frame-height-phone) sm:h-(--frame-height) mt-[10px] mb-[20px] mx-[24px] outline-[4px] md:outline-[6px]">
+    <article class="flex flex-col sm:flex-row h-(--frame-height-phone) sm:h-(--frame-height) mt-[10px] mb-[20px] mx-[24px] outline-[4px] md:outline-[6px]">
         // The Intro/Tech-stack section
-        <div class="flex flex-col w-full sm:h-full sm:justify-center sm:space-y-(--intro-techstack-spacing) sm:w-1/2 font-(family-name:--font-ubuntu)">
+        <section class="flex flex-col w-full sm:h-full sm:justify-center sm:space-y-(--intro-techstack-spacing) sm:w-1/2 font-(family-name:--font-ubuntu)">
             // The Intro/Title/Subtitle section --I should find a way to dynamically fill it
             <div class="flex flex-col justify-around text-center bg-white border-x-[0.5px] border-x-[#d9d9d9] rounded-sm w-[304px] h-[208px] mx-auto mt-[44px] px-4 place-self-center">
                 <h2 class="uppercase font-medium text-xl"> Software Developer</h2>
@@ -34,10 +34,10 @@ templ Landing() {
                     <img src="/images/docker-mark-blue.svg" class="w-[38.01px] h-[30px] m-auto">
                 </div>
             </div>
-        </div>
+        </section>
 
         // Lottifile/CTA section
-        <div class="flex flex-col w-full sm:w-1/2 sm:h-full sm:justify-center sm:space-y-(--intro-techstack-spacing)">
+        <section class="flex flex-col w-full sm:w-1/2 sm:h-full sm:justify-center sm:space-y-(--intro-techstack-spacing)">
             // Lottiefile
             <div class="flex justify-center">
                 <canvas id="canvas" class="w-full max-h-[247px] h-(--desk-lottie-height)"></canvas>
@@ -63,6 +63,6 @@ templ Landing() {
                     <button type="button" class="font-(family-name:--font-ubuntu) uppercase text-black text-base font-medium bg-white outline-black outline-[2px] rounded-2xl h-[44px]">Contact Me</button>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </article>
 }
