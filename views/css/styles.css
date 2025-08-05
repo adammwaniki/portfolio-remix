@@ -11,7 +11,7 @@
     --frame-height: calc(100dvh - 84px);
     --frame-height-full: calc(100dvh);
     --frame-height-phone: calc(100dvh - 64px);
-    --frame-height-phone-full: calc(100dvh);
+    --frame-height-phone-full: calc(100dvh - 40px);
     /*Intro/Tech-stack spacing*/
     --intro-techstack-spacing: calc(70svh * 3/20);
     --intro-lottie-spacing: calc(70dvh * 1/30);
