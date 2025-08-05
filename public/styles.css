@@ -16,6 +16,7 @@
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
+    --container-lg: 32rem;
     --text-sm: 0.875rem;
     --text-sm--line-height: calc(1.25 / 0.875);
     --text-base: 1rem;
@@ -221,11 +222,20 @@
   .mt-\[10px\] {
     margin-top: 10px;
   }
+  .mt-\[16px\] {
+    margin-top: 16px;
+  }
   .mt-\[22px\] {
     margin-top: 22px;
   }
+  .mt-\[24px\] {
+    margin-top: 24px;
+  }
   .mt-\[44px\] {
     margin-top: 44px;
+  }
+  .mt-\[164px\] {
+    margin-top: 164px;
   }
   .mr-\[34\.4px\] {
     margin-right: 34.4px;
@@ -305,6 +315,9 @@
   }
   .w-full {
     width: 100%;
+  }
+  .w-lg {
+    width: var(--container-lg);
   }
   .border-collapse {
     border-collapse: collapse;
