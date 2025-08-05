@@ -31,7 +31,7 @@
 }
 
 /* Individual icons by ID */
-#menu-icon {
+span#menu-icon.material-symbols-outlined {
   font-variation-settings: 
     'FILL' 0, 
     'wght' 400, 
@@ -39,7 +39,7 @@
     'opsz' 24;
 }
 
-#folder-icon {
+span#folder-icon.material-symbols-outlined {
   font-variation-settings: 
     'FILL' 0, 
     'wght' 500, 
@@ -47,7 +47,7 @@
     'opsz' 40;
 }
 
-#contact_mail-icon {
+span#contact_mail-icon.material-symbols-outlined {
   font-variation-settings: 
     'FILL' 0, 
     'wght' 500, 
