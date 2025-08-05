@@ -7,7 +7,7 @@
     --font-ubuntu: "Ubuntu", sans-serif; 
     /*picture frame height*/
     --frame-height: calc(100dvh - 84px);
-    --frame-height-full: calc(100dvh);
+    --frame-height-full: calc(100dvh - 48px);
     --frame-height-phone: calc(100dvh - 64px);
     --frame-height-phone-full: calc(100dvh - 40px);
     /*Intro/Tech-stack spacing*/
@@ -16,7 +16,7 @@
     /*desk lottie height*/
     --desk-lottie-height: calc(100dvh * 1/4);
     /*about page paragraph section height*/
-    --abt-page-p-height: calc(65dvh);
+    --abt-page-p-height: calc(60dvh);
 }
 
 /* Icon font styling */

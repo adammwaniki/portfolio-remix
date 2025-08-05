@@ -2,7 +2,7 @@ package views
 
 templ About() {
     //Overall section
-    <article class="flex flex-col sm:flex-row h-(--frame-height-phone-full) sm:h-(--frame-height-full) font-(family-name:--font-ubuntu) m-[24px] outline-[4px] md:outline-[6px] shadow-xl">
+    <article class="flex flex-col sm:flex-row h-(--frame-height-phone-full) sm:h-(--frame-height-full) font-(family-name:--font-ubuntu) m-[24px] outline-[4px] md:outline-[6px] shadow-xl space-y-[16px]">
         <section class="flex flex-col w-full sm:h-full sm:justify-center sm:space-y-(--intro-techstack-spacing) sm:w-1/2 font-(family-name:--font-ubuntu)">
             // The Intro/Title/Subtitle section --I should find a way to dynamically fill it
             <div class="flex flex-col justify-around text-center bg-white border-x-[0.5px] border-x-[#d9d9d9] rounded-sm w-[304px] h-[208px] mx-auto mt-[16px] px-4 place-self-center">
@@ -13,7 +13,7 @@ templ About() {
         </section>
         <section class="flex flex-col w-full sm:w-1/2 h-(--abt-page-p-height) sm:h-full sm:justify-center ">
             // About Me paragraphs
-            <div class="grid grid-cols-1 gap-y-4 sm:gap-y-6 md:gap-y-10 justify-around text-left bg-white rounded-2xl w-[348px] sm:w-5/6 sm:h-4/5 p-[22px] mx-auto">
+            <div class="grid grid-cols-1 gap-y-2 sm:gap-y-6 justify-around text-left bg-white rounded-2xl w-[348px] sm:w-5/6 sm:h-4/5 p-[22px] mx-auto">
                 <p>
                     Hi there! I&#39;m Adam Mwaniki, pronounced /mwah  nay  key/
                 </p>
@@ -25,7 +25,7 @@ templ About() {
                     I specialise in translating complex ideas and requirements into clean, efficient and maintainable code. From initial design and architecture to deployment and ongoing maintenance and support.
                 </p>
                 <p>
-                    I&#39;m always eager to embrace new challenges so <a hx-target="" class="underline text-blue"> let&#39;s connect</a> and discuss how I can bring your next idea to life! 
+                    I&#39;m always eager to embrace new challenges so <a hx-target="" class="underline text-[#5266EB] hover:text-blue-800"> let&#39;s connect</a> and discuss how I can bring your next idea to life! 
                 </p>
             </div>
         </section>

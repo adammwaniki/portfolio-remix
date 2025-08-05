@@ -9,8 +9,10 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-blue-50: oklch(97% 0.014 254.604);
     --color-blue-500: oklch(62.3% 0.214 259.815);
     --color-blue-700: oklch(48.8% 0.243 264.376);
+    --color-blue-800: oklch(42.4% 0.199 265.638);
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
@@ -252,6 +254,9 @@
   .grid {
     display: grid;
   }
+  .table {
+    display: table;
+  }
   .size-\[24px\] {
     width: 24px;
     height: 24px;
@@ -310,8 +315,14 @@
   .w-full {
     width: 100%;
   }
+  .border-collapse {
+    border-collapse: collapse;
+  }
   .transform {
     transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
+  }
+  .resize {
+    resize: both;
   }
   .list-inside {
     list-style-position: inside;
@@ -350,6 +361,20 @@
       margin-block-end: calc(calc(var(--spacing) * 2) * calc(1 - var(--tw-space-y-reverse)));
     }
   }
+  .space-y-\[16\] {
+    :where(& > :not(:last-child)) {
+      --tw-space-y-reverse: 0;
+      margin-block-start: calc(16 * var(--tw-space-y-reverse));
+      margin-block-end: calc(16 * calc(1 - var(--tw-space-y-reverse)));
+    }
+  }
+  .space-y-\[16px\] {
+    :where(& > :not(:last-child)) {
+      --tw-space-y-reverse: 0;
+      margin-block-start: calc(16px * var(--tw-space-y-reverse));
+      margin-block-end: calc(16px * calc(1 - var(--tw-space-y-reverse)));
+    }
+  }
   .gap-x-\[20px\] {
     column-gap: 20px;
   }
@@ -367,8 +392,8 @@
       margin-inline-end: calc(calc(var(--spacing) * 6) * calc(1 - var(--tw-space-x-reverse)));
     }
   }
-  .gap-y-4 {
-    row-gap: calc(var(--spacing) * 4);
+  .gap-y-2 {
+    row-gap: calc(var(--spacing) * 2);
   }
   .gap-y-\[5px\] {
     row-gap: 5px;
@@ -472,6 +497,9 @@
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
   }
+  .text-\[\#5266EB\] {
+    color: #5266EB;
+  }
   .text-black {
     color: var(--color-black);
   }
@@ -487,6 +515,10 @@
   .shadow-xl {
     --tw-shadow: 0 20px 25px -5px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 8px 10px -6px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .outline {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
   }
   .outline-\[0\.5px\] {
     outline-style: var(--tw-outline-style);
@@ -510,6 +542,20 @@
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-blue-700);
+      }
+    }
+  }
+  .hover\:text-blue-50 {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-blue-50);
+      }
+    }
+  }
+  .hover\:text-blue-800 {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-blue-800);
       }
     }
   }
@@ -579,11 +625,6 @@
       row-gap: calc(var(--spacing) * 6);
     }
   }
-  .md\:gap-y-10 {
-    @media (width >= 48rem) {
-      row-gap: calc(var(--spacing) * 10);
-    }
-  }
   .md\:text-xl {
     @media (width >= 48rem) {
       font-size: var(--text-xl);
@@ -600,13 +641,13 @@
 :root {
   --font-ubuntu: "Ubuntu", sans-serif;
   --frame-height: calc(100dvh - 84px);
-  --frame-height-full: calc(100dvh);
+  --frame-height-full: calc(100dvh - 48px);
   --frame-height-phone: calc(100dvh - 64px);
   --frame-height-phone-full: calc(100dvh - 40px);
   --intro-techstack-spacing: calc(70svh * 3/20);
   --intro-lottie-spacing: calc(70dvh * 1/30);
   --desk-lottie-height: calc(100dvh * 1/4);
-  --abt-page-p-height: calc(65dvh);
+  --abt-page-p-height: calc(60dvh);
 }
 .material-symbols-outlined {
   font-family: 'Material Symbols Outlined';
