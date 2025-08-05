@@ -16,7 +16,6 @@
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
-    --container-lg: 32rem;
     --text-sm: 0.875rem;
     --text-sm--line-height: calc(1.25 / 0.875);
     --text-base: 1rem;
@@ -243,6 +242,9 @@
   .ml-\[24px\] {
     margin-left: 24px;
   }
+  .box-border {
+    box-sizing: border-box;
+  }
   .box-content {
     box-sizing: content-box;
   }
@@ -258,6 +260,9 @@
   .size-\[24px\] {
     width: 24px;
     height: 24px;
+  }
+  .h-\(--abt-page-p-height\) {
+    height: var(--abt-page-p-height);
   }
   .h-\(--desk-lottie-height\) {
     height: var(--desk-lottie-height);
@@ -309,9 +314,6 @@
   }
   .w-full {
     width: 100%;
-  }
-  .w-lg {
-    width: var(--container-lg);
   }
   .border-collapse {
     border-collapse: collapse;
@@ -434,6 +436,9 @@
   }
   .pt-\[24px\] {
     padding-top: 24px;
+  }
+  .pb-4 {
+    padding-bottom: calc(var(--spacing) * 4);
   }
   .text-center {
     text-align: center;
@@ -601,6 +606,7 @@
   --intro-techstack-spacing: calc(70svh * 3/20);
   --intro-lottie-spacing: calc(70dvh * 1/30);
   --desk-lottie-height: calc(100dvh * 1/4);
+  --abt-page-p-height: calc(65dvh);
 }
 .material-symbols-outlined #menu-icon {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;

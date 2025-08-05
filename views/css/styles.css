@@ -15,6 +15,8 @@
     --intro-lottie-spacing: calc(70dvh * 1/30);
     /*desk lottie height*/
     --desk-lottie-height: calc(100dvh * 1/4);
+    /*about page paragraph section height*/
+    --abt-page-p-height: calc(65dvh);
 }
 
 /*menu icon*/
