@@ -9,7 +9,7 @@ import (
     "github.com/adammwaniki/portfolio-remix/views"
 )
 
-func main() {
+func worker() {
     // Ensure the dist directory exists
     err := os.MkdirAll("dist", 0755)
     if err != nil {

@@ -18,7 +18,7 @@
 }
 
 /*menu icon*/
-.material-symbols-outlined {
+.material-symbols-outlined #menu-icon {
   font-variation-settings:
   'FILL' 0,
   'wght' 500,
@@ -26,7 +26,7 @@
   'opsz' 24
 }
 /*folder icon*/
-#folder-icon {
+.material-symbols-outlined #folder-icon {
   font-variation-settings:
   'FILL' 0,
   'wght' 500,
@@ -34,7 +34,7 @@
   'opsz' 40
 }
 /*mail icon*/
-#mail-icon {
+.material-symbols-outlined #mail-icon {
   font-variation-settings:
   'FILL' 0,
   'wght' 500,
