@@ -7,7 +7,7 @@
     --font-ubuntu: "Ubuntu", sans-serif; 
     /*picture frame height*/
     --frame-height: calc(100dvh - 84px);
-    --frame-height-full: calc(100dvh - 48px);
+    --frame-height-full: calc(100dvh - 40px);
     --frame-height-phone: calc(100dvh - 64px);
     --frame-height-phone-full: calc(100dvh - 40px);
     /*Intro/Tech-stack spacing*/

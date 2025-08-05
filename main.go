@@ -13,7 +13,7 @@ func main() {
     // Route for homepage
     mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		log.Println("Rendering Home Page")
-		views.Home().Render(r.Context(), w)
+		views.Page().Render(r.Context(), w)
     })
     
     /*
