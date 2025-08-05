@@ -242,9 +242,6 @@
   .ml-\[24px\] {
     margin-left: 24px;
   }
-  .box-border {
-    box-sizing: border-box;
-  }
   .box-content {
     box-sizing: content-box;
   }
@@ -270,6 +267,9 @@
   .h-\(--frame-height-phone\) {
     height: var(--frame-height-phone);
   }
+  .h-\(--frame-height-phone-full\) {
+    height: var(--frame-height-phone-full);
+  }
   .h-\[30px\] {
     height: 30px;
   }
@@ -284,12 +284,6 @@
   }
   .max-h-\[247px\] {
     max-height: 247px;
-  }
-  .w-5 {
-    width: calc(var(--spacing) * 5);
-  }
-  .w-5\/6 {
-    width: calc(5/6 * 100%);
   }
   .w-\[24\.76px\] {
     width: 24.76px;
@@ -311,6 +305,9 @@
   }
   .w-\[304px\] {
     width: 304px;
+  }
+  .w-\[348px\] {
+    width: 348px;
   }
   .w-full {
     width: 100%;
@@ -437,8 +434,8 @@
   .pt-\[24px\] {
     padding-top: 24px;
   }
-  .pb-4 {
-    padding-bottom: calc(var(--spacing) * 4);
+  .pb-8 {
+    padding-bottom: calc(var(--spacing) * 8);
   }
   .text-center {
     text-align: center;
@@ -542,6 +539,11 @@
       height: var(--frame-height);
     }
   }
+  .sm\:h-\(--frame-height-full\) {
+    @media (width >= 40rem) {
+      height: var(--frame-height-full);
+    }
+  }
   .sm\:h-4\/5 {
     @media (width >= 40rem) {
       height: calc(4/5 * 100%);
@@ -560,6 +562,11 @@
   .sm\:w-1\/2 {
     @media (width >= 40rem) {
       width: calc(1/2 * 100%);
+    }
+  }
+  .sm\:w-5\/6 {
+    @media (width >= 40rem) {
+      width: calc(5/6 * 100%);
     }
   }
   .sm\:flex-row {
@@ -586,6 +593,11 @@
       row-gap: calc(var(--spacing) * 6);
     }
   }
+  .md\:gap-y-10 {
+    @media (width >= 48rem) {
+      row-gap: calc(var(--spacing) * 10);
+    }
+  }
   .md\:text-xl {
     @media (width >= 48rem) {
       font-size: var(--text-xl);
@@ -602,7 +614,9 @@
 :root {
   --font-ubuntu: "Ubuntu", sans-serif;
   --frame-height: calc(100dvh - 84px);
+  --frame-height-full: calc(100dvh);
   --frame-height-phone: calc(100dvh - 64px);
+  --frame-height-phone-full: calc(100dvh);
   --intro-techstack-spacing: calc(70svh * 3/20);
   --intro-lottie-spacing: calc(70dvh * 1/30);
   --desk-lottie-height: calc(100dvh * 1/4);
