@@ -29,28 +29,3 @@
     'GRAD' 0, 
     'opsz' 24;
 }
-
-/* Individual icons by ID */
-span#menu-icon.material-symbols-outlined {
-  font-variation-settings: 
-    'FILL' 0, 
-    'wght' 400, 
-    'GRAD' 0, 
-    'opsz' 24;
-}
-
-span#folder-icon.material-symbols-outlined {
-  font-variation-settings: 
-    'FILL' 0, 
-    'wght' 500, 
-    'GRAD' 200, 
-    'opsz' 40;
-}
-
-span#contact_mail-icon.material-symbols-outlined {
-  font-variation-settings: 
-    'FILL' 0, 
-    'wght' 500, 
-    'GRAD' 200, 
-    'opsz' 40;
-}
