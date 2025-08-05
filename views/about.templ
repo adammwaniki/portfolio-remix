@@ -2,7 +2,7 @@ package views
 
 templ About() {
     //Overall section
-    <article class=" flex flex-col sm:flex-row h-(--frame-height-phone-full) sm:h-(--frame-height-full) font-(family-name:--font-ubuntu) pt-[24px] mx-[24px] outline-[4px] md:outline-[6px]">
+    <article class="flex flex-col sm:flex-row h-(--frame-height-phone-full) sm:h-(--frame-height-full) font-(family-name:--font-ubuntu) m-[24px] outline-[4px] md:outline-[6px] shadow-xl">
         <section class="flex flex-col w-full sm:h-full sm:justify-center sm:space-y-(--intro-techstack-spacing) sm:w-1/2 font-(family-name:--font-ubuntu)">
             // The Intro/Title/Subtitle section --I should find a way to dynamically fill it
             <div class="flex flex-col justify-around text-center bg-white border-x-[0.5px] border-x-[#d9d9d9] rounded-sm w-[304px] h-[208px] mx-auto mt-[16px] px-4 place-self-center">
@@ -11,7 +11,7 @@ templ About() {
                 <h2 class="font-normal text-sm">Curious, Inquisitive, Adaptive, Mindful, Intentional, Focused, Creative, Calm, Collaborative.</h2>
             </div>
         </section>
-        <section class="flex flex-col w-full sm:w-1/2 h-(--abt-page-p-height) sm:h-full sm:justify-center pb-8 ">
+        <section class="flex flex-col w-full sm:w-1/2 h-(--abt-page-p-height) sm:h-full sm:justify-center ">
             // About Me paragraphs
             <div class="grid grid-cols-1 gap-y-4 sm:gap-y-6 md:gap-y-10 justify-around text-left bg-white rounded-2xl w-[348px] sm:w-5/6 sm:h-4/5 p-[22px] mx-auto">
                 <p>
