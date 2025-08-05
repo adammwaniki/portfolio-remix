@@ -242,6 +242,9 @@
   .ml-\[24px\] {
     margin-left: 24px;
   }
+  .box-border {
+    box-sizing: border-box;
+  }
   .box-content {
     box-sizing: content-box;
   }
@@ -436,6 +439,9 @@
   }
   .pb-8 {
     padding-bottom: calc(var(--spacing) * 8);
+  }
+  .pb-\[20px\] {
+    padding-bottom: 20px;
   }
   .text-center {
     text-align: center;
