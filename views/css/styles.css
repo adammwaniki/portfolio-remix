@@ -17,4 +17,6 @@
     --desk-lottie-height: calc(100dvh * 1/4);
     /*about page paragraph section height*/
     --abt-page-p-height: calc(60dvh);
+    /*projects page projects section height*/
+    --projects-page-projo-sec-height: calc(55dvh);
 }
