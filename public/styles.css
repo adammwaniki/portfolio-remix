@@ -329,6 +329,9 @@
   .max-h-\[247px\] {
     max-height: 247px;
   }
+  .min-h-\[98px\] {
+    min-height: 98px;
+  }
   .min-h-\[360px\] {
     min-height: 360px;
   }
@@ -374,8 +377,14 @@
   .w-full {
     width: 100%;
   }
+  .max-w-\[310px\] {
+    max-width: 310px;
+  }
   .max-w-\[348px\] {
     max-width: 348px;
+  }
+  .min-w-full {
+    min-width: 100%;
   }
   .basis-1 {
     flex-basis: calc(var(--spacing) * 1);
