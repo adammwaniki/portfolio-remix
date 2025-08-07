@@ -1,7 +1,7 @@
 package views
 
 templ MyProjects() {
-    <article class="flex flex-col sm:flex-row h-(--frame-height-phone-full) sm:h-(--frame-height-full) font-(family-name:--font-ubuntu) m-[24px] outline-[4px] md:outline-[6px] shadow-xl space-y-[16px]">
+    <article class="grid grid-cols-1 sm:flex sm:flex-row h-(--frame-height-phone-full) sm:h-(--frame-height-full) font-(family-name:--font-ubuntu) m-[24px] outline-[4px] md:outline-[6px] shadow-xl space-y-[16px]">
         <section class="flex flex-col w-full sm:h-full sm:justify-center sm:space-y-(--intro-techstack-spacing) sm:w-1/2 font-(family-name:--font-ubuntu)">
             // The Intro/Title/Subtitle section
             <div class="flex flex-col justify-around text-center bg-white border-x-[0.5px] border-x-[#d9d9d9] rounded-sm w-[304px] h-[208px] mx-auto mt-[16px] px-4 place-self-center">
@@ -10,8 +10,113 @@ templ MyProjects() {
                 <h2 class="font-normal text-xs">Refined, Cohesive and Pivotal.<br>Solutions Engineered for Impact.</h2>
             </div>
         </section>
-        <section>
+        <section class="flex flex-col w-full sm:w-1/2 h-(--projects-page-projo-sec-height) sm:h-full justify-center ">
+            <div class="flex flex-row items-center justify-end pr-[3.5px] my-[0px] h-[18px]">
+                <button type="button" class="lowercase text-[#5266EB] underline decoration-[0.5px] underline-offset-[3px] decoration-inherit">View More</button>
+                <span class="material-symbols-outlined text-[#5266EB] text-[24px] [font-variation-settings:'FILL'_0,'wght'_500,'GRAD'_200,'opsz'_24'] ">arrow_forward</span>
+            </div>
+            <div class="grid grid-cols-2 gap-[3px] p-[3px] min-h-[360px] h-(--projects-page-projo-sec-height) lg:h-4/5">
+                <div class="flex flex-col justify-between border-[0.5px] border-[#d9d9d9] shadow-md bg-white font-(family-name:--font-ubuntu) text-center ">
+                    <div class="flex items-start justify-center">
+                        <h2 class="uppercase font-light text-sm bg-[#F5F5F5]">Full-Stack</h2>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <h3 class="uppercase font-semibold text-xl">Sendit</h3>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <h3 class="font-light text-xs">A rapid delivery courier <br>service.</h3>
+                    </div>
+                    <div class="flex justify-center">
+                        <canvas id="sendit-canvas" class="min-w-full max-w-[310px] min-h-[98px] max-h-[200px] py-[12px]">
+                            <script type="module">
+                            import { DotLottie } from "https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-web/+esm";
 
+                            new DotLottie({
+                                autoplay: true,
+                                loop: true,
+                                canvas: document.getElementById("sendit-canvas"),
+                                src: "/animations/sendit.lottie",
+                            });
+                            </script>
+                        </canvas>
+                    </div>
+                </div>
+                <div class="flex flex-col justify-between border-[0.5px] border-[#d9d9d9] shadow-md bg-white font-(family-name:--font-ubuntu) text-center ">
+                    <div class="flex items-start justify-center">
+                        <h2 class="uppercase font-light text-sm bg-[#F5F5F5]">Back-end</h2>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <h3 class="uppercase font-semibold text-xl">Andika</h3>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <h3 class="font-light text-xs">An intuitive notes management service</h3>
+                    </div>
+                    <div class="flex justify-center">
+                        <canvas id="andika-canvas" class="w-full min-h-[98px] max-h-[200px] py-[12px] ">
+                            <script type="module">
+                            import { DotLottie } from "https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-web/+esm";
+
+                            new DotLottie({
+                                autoplay: true,
+                                loop: true,
+                                canvas: document.getElementById("andika-canvas"),
+                                src: "/animations/andika.lottie",
+                            });
+                            </script>
+                        </canvas>
+                    </div>
+                </div>
+                <div class="flex flex-col justify-between border-[0.5px] border-[#d9d9d9] shadow-md bg-white font-(family-name:--font-ubuntu) text-center ">
+                    <div class="flex items-start justify-center">
+                        <h2 class="uppercase font-light text-sm bg-[#F5F5F5]">Command Line</h2>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <h3 class="uppercase font-semibold text-xl">O-Sipital</h3>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <h3 class="font-normal text-xs">A secure hostpital management service</h3>
+                    </div>
+                    <div class="flex justify-center">
+                        <canvas id="osipital-canvas" class="w-full min-h-[98px] max-h-[200px] py-[12px] ">
+                            <script type="module">
+                            import { DotLottie } from "https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-web/+esm";
+
+                            new DotLottie({
+                                autoplay: true,
+                                loop: true,
+                                canvas: document.getElementById("osipital-canvas"),
+                                src: "/animations/o-sipital-ambulance.lottie",
+                            });
+                            </script>
+                        </canvas>
+                    </div>
+                </div>
+                <div class="flex flex-col justify-between border-[0.5px] border-[#d9d9d9] shadow-md bg-white font-(family-name:--font-ubuntu) text-center ">
+                    <div class="flex items-start justify-center">
+                        <h2 class="uppercase font-light text-sm bg-[#F5F5F5]">Front-End</h2>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <h3 class="uppercase font-semibold text-xl">Lawnbull</h3>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <h3 class="font-normal text-xs">A bespoke digital marketing service</h3>
+                    </div>
+                    <div class="flex justify-center">
+                        <canvas id="lawnbull-canvas-4" class="w-full min-h-[98px] max-h-[200px] py-[12px] ">
+                            <script type="module">
+                            import { DotLottie } from "https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-web/+esm";
+
+                            new DotLottie({
+                                autoplay: true,
+                                loop: true,
+                                canvas: document.getElementById("lawnbull-canvas-4"),
+                                src: "/animations/lawnbull.lottie",
+                            });
+                            </script>
+                        </canvas>
+                    </div>
+                </div>
+            </div>
         </section>
     </article>
 }
