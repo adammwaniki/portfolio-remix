@@ -10,7 +10,7 @@ templ ContactMe() {
                 <h2 class="font-normal text-xs">Get in touch with me</h2>
             </div>
         </section>
-        <section class="flex flex-col w-full sm:w-1/2 h-(--projects-page-projo-sec-height) sm:h-full justify-center ">
+        <section class="flex flex-col w-full sm:w-1/2 min-h-(--projects-page-projo-sec-height) sm:h-full justify-center ">
             <div class="grid grid-cols-1 gap-[3px] p-[3px] h-full lg:h-4/5 w-full">
                 <div class="flex justify-center items-center">
                     <div class="w-xs sm:max-w-md  p-4 border border-[#d9d9d9] rounded-lg shadow">
@@ -36,9 +36,13 @@ templ ContactMe() {
                                 <p id="error-message" class="text-red-600 text-sm mt-1"></p>
                             </div>
 
-                            <button type="submit"
-                                class="w-full py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition-colors">
-                                Send
+                            <button type="submit" id="send-button"
+                                class="w-full py-2 bg-[#5266EB] border-black border-[2px] text-white font-semibold rounded-md hover:bg-blue-700 transition-colors flex justify-center items-center space-x-2">
+                                <span id="button-text">Send</span>
+                                <svg id="button-spinner" class="hidden animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                                </svg>
                             </button>
 
                             <p id="form-status" class="mt-4 text-center text-sm"></p>
