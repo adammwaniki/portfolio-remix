@@ -7,3 +7,4 @@ temp/404.js
 
 # Ignore environment variables
 .env
+main.go
