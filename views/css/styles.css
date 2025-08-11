@@ -19,6 +19,8 @@
     --abt-page-p-height: calc(60dvh);
     /*projects page projects section height*/
     --projects-page-projo-sec-height: calc(55dvh);
+    /*projects tiles height*/
+    --project-tiles-phone-full: calc(100dvh - 72px);
 }
 
 html {

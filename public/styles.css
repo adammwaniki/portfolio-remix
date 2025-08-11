@@ -273,12 +273,6 @@
   .mt-\[48px\] {
     margin-top: 48px;
   }
-  .mt-\[84\] {
-    margin-top: 84;
-  }
-  .mt-\[84px\] {
-    margin-top: 84px;
-  }
   .mr-\[34\.4px\] {
     margin-right: 34.4px;
   }
@@ -336,6 +330,9 @@
   }
   .h-\(--frame-height-phone-full\) {
     height: var(--frame-height-phone-full);
+  }
+  .h-\(--project-tiles-phone-full\) {
+    height: var(--project-tiles-phone-full);
   }
   .h-\(--projects-page-projo-sec-height\) {
     height: var(--projects-page-projo-sec-height);
@@ -976,6 +973,7 @@
   --desk-lottie-height: calc(100dvh * 1/4);
   --abt-page-p-height: calc(60dvh);
   --projects-page-projo-sec-height: calc(55dvh);
+  --project-tiles-phone-full: calc(100dvh - 72px);
 }
 html {
   scroll-behavior: smooth;
