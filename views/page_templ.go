@@ -61,7 +61,7 @@ func Page() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</main><script type=\"text/javascript\" src=\"https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js\">\n            </script><script type=\"text/javascript\">\n            (function(){\n                emailjs.init({\n                    publicKey: \"-eI6FqIyAwQ91X7-J\",\n                });\n            })();\n            </script><script src=\"/static/contact.js\"></script></body></html>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</main><script type=\"text/javascript\" src=\"https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js\">\n            </script><script type=\"text/javascript\">\n            (function(){\n                emailjs.init({\n                    publicKey: \"-eI6FqIyAwQ91X7-J\",\n                });\n            })();\n            </script><script src=\"/contact.js\"></script></body></html>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

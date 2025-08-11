@@ -4,3 +4,6 @@ tmp/
 .air.toml
 # Ignore temp folders
 temp/404.js
+
+# Ignore environment variables
+.env
