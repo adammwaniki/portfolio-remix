@@ -20,7 +20,7 @@
     /*projects page projects section height*/
     --projects-page-projo-sec-height: calc(55dvh);
     /*projects tiles height*/
-    --project-tiles-phone-full: calc(100dvh - 72px);
+    --project-tiles-phone-full: calc(100dvh - 68px);
 }
 
 html {
