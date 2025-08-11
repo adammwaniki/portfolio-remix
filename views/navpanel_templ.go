@@ -29,7 +29,7 @@ func NavPanel() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<nav class=\"flex space-x-6 p-4 bg-[#f5f5f5] text-black text-sm\" aria-label=\"Main Navigation\"><a href=\"/\" class=\"hover:underline\">Home</a> <a href=\"/projects\" hx-get=\"/projects\" hx-target=\"main\" hx-push-url=\"true\" class=\"hover:underline\">Projects</a> <a href=\"/resume\" class=\"hover:underline\">R&#233;sum&#233;</a> <a href=\"/blog\" class=\"hover:underline\">Blog</a> <a href=\"/contact\" class=\"hover:underline\">Contact</a></nav>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<article class=\"font-(family-name:--font-ubuntu)\"><nav class=\"flex flex-col space-y-4 text-black text-sm\" aria-label=\"Main Navigation\"><a href=\"/\" class=\"hover:underline\">Home</a> <a href=\"/projects\" hx-get=\"/projects\" hx-target=\"main\" hx-push-url=\"true\" class=\"hover:underline\">Projects</a> <a href=\"/resume\" target=\"_blank\" class=\"hover:underline\">R&#233;sum&#233;</a> <a href=\"https://medium.com/@adamndegwa\" class=\"hover:underline\">Blog</a> <a href=\"#contact-me\" class=\"hover:underline\">Contact</a></nav></article>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
