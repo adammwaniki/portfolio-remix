@@ -8,7 +8,7 @@ package views
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-func Header() templ.Component {
+func Header(fixed bool) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -29,9 +29,16 @@ func Header() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<header><nav class=\"box-content h-[44px] sm:h-[64px] w-full flex justify-between items-center bg-[#f5f5f5] text-black\"><a href=\"/\" class=\"flex items-center space-x-3\"><img class=\"size-[24px] ml-[24px]\" src=\"/images/human.png\" alt=\"home icon\" aria-label=\"home icon with a human face\"><h1 class=\"font-(family-name:--font-ubuntu) uppercase font-medium text-lg md:text-xl mt-[5px]\">Mwaniki</h1></a> <button type=\"button\" id=\"menu-button\" aria-label=\"Open menu\" class=\"flex items-center mr-[34.4px] mt-[4px]\"><span class=\"material-symbols-outlined text-[24px] [font-variation-settings:'FILL'_0,'wght'_400,'GRAD'_0,'opsz'_24']\" id=\"menu-icon\">menu</span></button></nav></header>")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
+		if fixed {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<header class=\"fixed top-0 left-0 right-0 z-50\"><nav class=\"box-content h-[44px] sm:h-[64px] w-full flex justify-between items-center bg-[#f5f5f5] text-black\"><a href=\"/\" class=\"flex items-center space-x-3\"><img class=\"size-[24px] ml-[24px]\" src=\"/images/human.png\" alt=\"home icon\" aria-label=\"home icon with a human face\"><h1 class=\"font-(family-name:--font-ubuntu) uppercase font-medium text-lg md:text-xl mt-[5px]\">Mwaniki</h1></a> <button type=\"button\" id=\"menu-button\" aria-label=\"Open menu\" class=\"flex items-center mr-[34.4px] mt-[4px]\"><span class=\"material-symbols-outlined text-[24px] [font-variation-settings:'FILL'_0,'wght'_400,'GRAD'_0,'opsz'_24']\" id=\"menu-icon\">menu</span></button></nav></header>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		} else {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<header><nav class=\"box-content h-[44px] sm:h-[64px] w-full flex justify-between items-center bg-[#f5f5f5] text-black\"><a href=\"/\" class=\"flex items-center space-x-3\"><img class=\"size-[24px] ml-[24px]\" src=\"/images/human.png\" alt=\"home icon\" aria-label=\"home icon with a human face\"><h1 class=\"font-(family-name:--font-ubuntu) uppercase font-medium text-lg md:text-xl mt-[5px]\">Mwaniki</h1></a> <button type=\"button\" id=\"menu-button\" aria-label=\"Open menu\" class=\"flex items-center mr-[34.4px] mt-[4px]\"><span class=\"material-symbols-outlined text-[24px] [font-variation-settings:'FILL'_0,'wght'_400,'GRAD'_0,'opsz'_24']\" id=\"menu-icon\">menu</span></button></nav></header>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
 		}
 		return nil
 	})
