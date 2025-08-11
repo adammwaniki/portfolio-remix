@@ -7,7 +7,7 @@ import (
 	"github.com/adammwaniki/portfolio-remix/views"
 )
 
-func omain() {
+func main() {
     mux := http.NewServeMux()
 
     // Route for homepage
