@@ -16,13 +16,11 @@ func main() {
 		views.Page().Render(r.Context(), w)
     })
     
-    /*
 	// Route for projects page
     mux.HandleFunc("/projects", func(w http.ResponseWriter, r *http.Request) {
         log.Println("Rendering Projects Page")
-		views.Projects().Render(r.Context(), w)
+		views.AllProjects().Render(r.Context(), w)
     })
-    */
 
     // Serve Tailwind CSS and any other assets e.g., static, public etc.
     mux.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("public"))))
