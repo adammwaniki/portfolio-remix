@@ -20,3 +20,7 @@
     /*projects page projects section height*/
     --projects-page-projo-sec-height: calc(55dvh);
 }
+
+html {
+  scroll-behavior: smooth;
+}

@@ -931,6 +931,9 @@
   --abt-page-p-height: calc(60dvh);
   --projects-page-projo-sec-height: calc(55dvh);
 }
+html {
+  scroll-behavior: smooth;
+}
 @property --tw-rotate-x {
   syntax: "*";
   inherits: false;
