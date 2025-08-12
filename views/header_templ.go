@@ -29,7 +29,7 @@ func Header() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<header id=\"header\"><nav class=\"box-content flex flex-wrap justify-between items-center h-[44px] sm:h-[64px] w-full text-black\"><!-- Logo --><a href=\"/\" class=\"order-1 w-1/2 sm:w-auto flex h-[40px] sm:h-auto items-center space-x-3\"><img class=\"size-[24px] ml-[24px]\" src=\"/public/images/human.png\" alt=\"home icon\"><h1 class=\"font-(family-name:--font-ubuntu) uppercase font-medium text-lg md:text-xl mt-[5px]\">Mwaniki</h1></a><!-- Navigation panel (overlay on mobile) --><div id=\"nav-panel\" class=\"z-10 bg-[#f5f5f5] p-[24px] sm:p-0 h-lvh sm:h-auto sm:flex sm:items-center order-3 sm:order-2 w-dvw sm:w-auto nav-overlay\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<header id=\"header\"><nav class=\"box-content flex flex-wrap justify-between items-center h-[44px] sm:h-[64px] w-full text-black\"><!-- Logo --><a href=\"/\" class=\"order-1 w-1/2 sm:w-auto flex h-[40px] sm:h-auto items-center space-x-3\"><img class=\"size-[24px] ml-[24px]\" src=\"/images/human.png\" alt=\"home icon\"><h1 class=\"font-(family-name:--font-ubuntu) uppercase font-medium text-lg md:text-xl mt-[5px]\">Mwaniki</h1></a><!-- Navigation panel (overlay on mobile) --><div id=\"nav-panel\" class=\"z-10 bg-[#f5f5f5] p-[24px] sm:p-0 h-lvh sm:h-auto sm:flex sm:items-center order-3 sm:order-2 w-dvw sm:w-auto nav-overlay\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
