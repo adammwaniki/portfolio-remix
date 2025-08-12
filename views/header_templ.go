@@ -8,7 +8,7 @@ package views
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-func Header(closed bool) templ.Component {
+func Header() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -29,24 +29,17 @@ func Header(closed bool) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		if closed {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, " <header id=\"header\"><nav class=\"box-content flex justify-between items-center h-[44px] sm:h-[64px] w-full text-black z-10\"><a href=\"/\" class=\"flex items-center space-x-3\"><img class=\"size-[24px] ml-[24px]\" src=\"/images/human.png\" alt=\"home icon\"><h1 class=\"font-(family-name:--font-ubuntu) uppercase font-medium text-lg md:text-xl mt-[5px]\">Mwaniki</h1></a> <button type=\"button\" aria-label=\"Open menu\" hx-get=\"/header/open\" hx-target=\"#header\" hx-swap=\"outerHTML\" class=\"flex items-center mr-[34.4px] mt-[4px]\"><span class=\"material-symbols-outlined text-[24px]\">menu</span></button></nav><script>\n                document.body.classList.remove('no-scroll');\n            </script></header>")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-		} else {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, " <header id=\"header\"><nav class=\"box-content flex flex-wrap justify-between items-center h-[44px] sm:h-[64px] w-full text-black \"><a href=\"/\" class=\"order-1 w-1/2 sm:w-auto flex h-[40px] sm:h-auto items-center space-x-3\"><img class=\"size-[24px] ml-[24px]\" src=\"/images/human.png\" alt=\"home icon\"><h1 class=\"font-(family-name:--font-ubuntu) uppercase font-medium text-lg md:text-xl mt-[5px]\">Mwaniki</h1></a><div class=\"z-10 bg-[#f5f5f5] p-[24px] sm:p-0 h-lvh sm:h-auto sm:flex sm:items-center order-3 sm:order-2 w-dvw sm:w-auto\">")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = NavPanel().Render(ctx, templ_7745c5c3_Buffer)
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</div><button type=\"button\" aria-label=\"Close menu\" hx-get=\"/header/closed\" hx-target=\"#header\" hx-swap=\"outerHTML\" class=\"order-2 sm:order-3 w-1/2 sm:w-auto flex h-[40px] items-center justify-end pr-[34.4px] mt-[4px]\"><span class=\"material-symbols-outlined text-[24px]\">close</span></button></nav><script>\n                document.body.classList.add('no-scroll');\n            </script></header>")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<header id=\"header\"><nav class=\"box-content flex flex-wrap justify-between items-center h-[44px] sm:h-[64px] w-full text-black\"><!-- Logo --><a href=\"/\" class=\"order-1 w-1/2 sm:w-auto flex h-[40px] sm:h-auto items-center space-x-3\"><img class=\"size-[24px] ml-[24px]\" src=\"/public/images/human.png\" alt=\"home icon\"><h1 class=\"font-(family-name:--font-ubuntu) uppercase font-medium text-lg md:text-xl mt-[5px]\">Mwaniki</h1></a><!-- Navigation panel (overlay on mobile) --><div id=\"nav-panel\" class=\"z-10 bg-[#f5f5f5] p-[24px] sm:p-0 h-lvh sm:h-auto sm:flex sm:items-center order-3 sm:order-2 w-dvw sm:w-auto nav-overlay\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = NavPanel().Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</div><!-- Menu open button --><button type=\"button\" aria-label=\"Open menu\" id=\"menu-toggle\" class=\"order-2 w-1/2 sm:w-auto flex h-[40px] items-center justify-end pr-[34.4px] mt-[4px]\"><span class=\"material-symbols-outlined text-[24px]\">menu</span></button><!-- Menu close button (only visible when open) --><button type=\"button\" aria-label=\"Close menu\" id=\"menu-close\" class=\"order-2 w-1/2 sm:w-auto flex h-[40px] items-center justify-end pr-[34.4px] mt-[4px] close-btn\"><span class=\"material-symbols-outlined text-[24px]\">close</span></button></nav><script>\n        document.addEventListener(\"DOMContentLoaded\", () => {\n            const body = document.body;\n            const menuToggle = document.getElementById(\"menu-toggle\");\n            const menuClose = document.getElementById(\"menu-close\");\n\n            menuToggle.addEventListener(\"click\", () => {\n                body.classList.add(\"menu-open\");\n            });\n\n            menuClose.addEventListener(\"click\", () => {\n                body.classList.remove(\"menu-open\");\n            });\n        });\n        </script></header>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
 		}
 		return nil
 	})

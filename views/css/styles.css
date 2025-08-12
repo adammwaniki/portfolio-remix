@@ -32,12 +32,41 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Hide close button & nav overlay by default */
+.close-btn {
+  display: none;
+}
+
+.nav-overlay {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-out;
+}
+
+/* When menu is open */
+.menu-open .nav-overlay {
+  opacity: 1;
+  transition: opacity 0.3s ease-out;
+  pointer-events: auto;
+}
+
+/* Switch visible button */
+.menu-open #menu-toggle {
+  display: none;
+}
+
+.menu-open .close-btn {
+  display: flex;
+}
+
+/* Prevent scroll when open (mobile) */
 @media (max-width: 640px) {
-  .no-scroll {
+  .menu-open {
     overflow: hidden;
-    touch-action: none; /* optional: prevents touch scroll */
-    height: 100vh; /* optional: prevent some browsers from scrolling */
+    touch-action: none;
+    height: 100vh;
   }
 }
+
 
 

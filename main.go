@@ -24,11 +24,11 @@ func main() {
 
     // Header
     mux.HandleFunc("/header/open", func(w http.ResponseWriter, r *http.Request) {
-        views.Header(false).Render(r.Context(), w)
+        views.Header().Render(r.Context(), w)
     })
 
     mux.HandleFunc("/header/closed", func(w http.ResponseWriter, r *http.Request) {
-        views.Header(true).Render(r.Context(), w)
+        views.Header().Render(r.Context(), w)
     })
 
     // Serve Tailwind CSS and any other assets e.g., static, public etc.
