@@ -21,8 +21,23 @@
     --projects-page-projo-sec-height: calc(55dvh);
     /*projects tiles height*/
     --project-tiles-phone-full: calc(100dvh - 68px);
+    --project-tiles-md-full: calc(100dvh - 92px);
+    --project-tiles-md-full-rest: calc(100dvh - 66px);
+    /*navbar text section height*/
+    --nav-phone-full: calc(100dvh - 44px);
+    --nav-sm-full: calc(100dvh - 64px);
 }
 
 html {
   scroll-behavior: smooth;
 }
+
+@media (max-width: 640px) {
+  .no-scroll {
+    overflow: hidden;
+    touch-action: none; /* optional: prevents touch scroll */
+    height: 100vh; /* optional: prevent some browsers from scrolling */
+  }
+}
+
+

@@ -11,10 +11,10 @@ templ MyProjects() {
             </div>
         </section>
         <section class="flex flex-col w-full sm:w-1/2 h-(--projects-page-projo-sec-height) sm:h-full justify-center ">
-            <div class="flex flex-row items-center justify-end pr-[3.5px] my-[0px] mb-[0px] h-[18px] sm:h-[32px] ">
-                <button type="button" class="lowercase text-[#5266EB] underline decoration-[0.5px] underline-offset-[3px] decoration-inherit">View More</button>
+            <a href="/projects" class="flex flex-row items-center justify-end pr-[3.5px] my-[0px] mb-[0px] h-[18px] sm:h-[32px] ">
+                <p class="lowercase text-[#5266EB] underline decoration-[0.5px] underline-offset-[3px] decoration-inherit">View More</p>
                 <span class="material-symbols-outlined text-[#5266EB] text-[24px] [font-variation-settings:'FILL'_0,'wght'_500,'GRAD'_200,'opsz'_24'] ">chevron_right</span>
-            </div>
+            </a>
             <div class="grid grid-cols-2 gap-[3px] p-[3px] h-(--projects-page-projo-sec-height) lg:h-4/5 w-full">
                 <div class="flex flex-col justify-between border-[0.5px] border-[#d9d9d9] shadow-md bg-white font-(family-name:--font-ubuntu) text-center ">
                     <div class="flex items-start justify-center">
@@ -85,7 +85,7 @@ templ MyProjects() {
                                 autoplay: true,
                                 loop: true,
                                 canvas: document.getElementById("osipital-canvas"),
-                                src: "animations/o-sipital-ambulance.lottie",
+                                src: "/animations/o-sipital-ambulance.lottie",
                             });
                             </script>
                         </canvas>
@@ -110,7 +110,7 @@ templ MyProjects() {
                                 autoplay: true,
                                 loop: true,
                                 canvas: document.getElementById("lawnbull-canvas-4"),
-                                src: "animations/lawnbull.lottie",
+                                src: "/animations/lawnbull.lottie",
                             });
                             </script>
                         </canvas>

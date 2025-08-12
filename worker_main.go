@@ -35,5 +35,9 @@ func main() {
     // Projects page
     renderPage("dist/projects/index.html", views.AllProjects())
 
+    // NavPanel
+    renderPage("dist/header/closed/index.html", views.Header(true)) // when closed
+    renderPage("dist/header/open/index.html", views.Header(false)) // when open
+
     log.Println("Static export completed!")
 }

@@ -22,6 +22,15 @@ func main() {
 		views.AllProjects().Render(r.Context(), w)
     })
 
+    // Header
+    mux.HandleFunc("/header/open", func(w http.ResponseWriter, r *http.Request) {
+        views.Header(false).Render(r.Context(), w)
+    })
+
+    mux.HandleFunc("/header/closed", func(w http.ResponseWriter, r *http.Request) {
+        views.Header(true).Render(r.Context(), w)
+    })
+
     // Serve Tailwind CSS and any other assets e.g., static, public etc.
     mux.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("public"))))
     mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
