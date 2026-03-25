@@ -58,13 +58,7 @@
     }
   });
 
-  // Close menu before HTMX navigations
-  document.body.addEventListener('htmx:beforeRequest', closeMenu);
-
-  // Scroll to top and update nav menu after HTMX swaps
-  document.body.addEventListener('htmx:afterSettle', function () {
-    window.scrollTo(0, 0);
-
+  function updateNavHighlight() {
     var currentPath = window.location.pathname;
     var links = document.querySelectorAll('.nav-menu a');
     for (var i = 0; i < links.length; i++) {
@@ -78,7 +72,18 @@
         links[i].removeAttribute('aria-current');
       }
     }
+  }
+
+  // Close menu before HTMX navigations
+  document.body.addEventListener('htmx:beforeRequest', closeMenu);
+
+  // Scroll to top after HTMX swaps
+  document.body.addEventListener('htmx:afterSettle', function () {
+    window.scrollTo(0, 0);
   });
+
+  // Update nav highlight after URL is pushed (fires after afterSettle)
+  document.body.addEventListener('htmx:pushedIntoHistory', updateNavHighlight);
 
   // Update document title from server response header
   document.body.addEventListener('htmx:afterRequest', function (e) {
@@ -94,5 +99,6 @@
     if (wrapper) {
       htmx.ajax('GET', window.location.pathname, { target: '#page-wrapper', swap: 'innerHTML' });
     }
+    updateNavHighlight();
   });
 })();
