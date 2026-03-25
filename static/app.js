@@ -1,17 +1,22 @@
 // ========================================
-// Menu — all DOM refs are re-queried on
-// every call so they survive HTMX swaps
-// AND history restoration (which replaces
-// the entire body's children).
+// Menu — all DOM refs re-queried every call
+// (survives HTMX swaps + history restore).
+// The nav-menu is the source of truth for
+// open/closed state because it persists
+// outside #page-wrapper, while the toggle
+// gets replaced on every HTMX swap.
 // ========================================
 (function () {
+  function isMenuOpen() {
+    var menu = document.getElementById('nav-menu');
+    return menu && menu.classList.contains('active');
+  }
+
   function openMenu(toggle) {
     if (!toggle) toggle = document.querySelector('.menu-toggle');
     var menu = document.getElementById('nav-menu');
     var overlay = document.getElementById('nav-overlay');
     if (!toggle || !menu || !overlay) return;
-    // Force reflow so the browser commits initial styles before the
-    // transition starts — fixes first-open after HTMX DOM insertion.
     toggle.offsetHeight;
     toggle.classList.add('active');
     menu.classList.add('active');
@@ -35,12 +40,30 @@
     if (overlay) overlay.classList.remove('active');
   }
 
-  // All clicks delegated to document — survives any DOM replacement
+  // After HTMX replaces #page-wrapper the new toggle has no classes.
+  // Sync it with the menu so the hamburger/X visual matches reality.
+  function syncToggleState() {
+    var toggle = document.querySelector('.menu-toggle');
+    var menu = document.getElementById('nav-menu');
+    if (!toggle || !menu) return;
+    if (menu.classList.contains('active')) {
+      toggle.classList.add('active');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Close menu');
+    } else {
+      toggle.classList.remove('active');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open menu');
+    }
+  }
+
+  // All clicks delegated to document — survives any DOM replacement.
+  // Uses menu state (persistent) as source of truth, not toggle state.
   document.addEventListener('click', function (e) {
     var toggle = e.target.closest('.menu-toggle');
     if (toggle) {
       e.preventDefault();
-      if (toggle.classList.contains('active')) {
+      if (isMenuOpen()) {
         closeMenu();
       } else {
         openMenu(toggle);
@@ -75,16 +98,20 @@
   // Close menu before HTMX navigations
   document.body.addEventListener('htmx:beforeRequest', closeMenu);
 
-  // Scroll to top after HTMX swaps
+  // After HTMX swaps #page-wrapper: sync the new toggle with menu state
   document.body.addEventListener('htmx:afterSettle', function () {
+    syncToggleState();
     window.scrollTo(0, 0);
   });
 
-  // Update nav highlight after URL is pushed (fires after afterSettle)
+  // Update nav highlight after URL is pushed
   document.body.addEventListener('htmx:pushedIntoHistory', updateNavHighlight);
 
-  // Update nav highlight after HTMX restores from history cache
-  document.body.addEventListener('htmx:historyRestore', updateNavHighlight);
+  // After history restore: ensure clean state
+  document.body.addEventListener('htmx:historyRestore', function () {
+    closeMenu();
+    updateNavHighlight();
+  });
 
   // Update document title from server response header
   document.body.addEventListener('htmx:afterRequest', function (e) {
