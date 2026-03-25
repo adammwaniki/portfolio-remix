@@ -1,0 +1,23 @@
+{{define "home.html"}}
+<div class="page active" id="page-home">
+  <section class="hero" aria-label="Introduction">
+    <div class="hero-title">
+      <h1>Adam Mwaniki</h1>
+      <p class="role">Software Engineer</p>
+    </div>
+    <div class="hero-description">
+      <p>I design and build software systems that are clear, maintainable and built to last.</p>
+      <p>Good software should be simple to use, easy to maintain and built for everyone.</p>
+    </div>
+  </section>
+  <div class="divider" role="separator"></div>
+  <nav class="nav-cards" aria-label="Sections">
+    {{range .Sections}}
+    <a href="/{{.ID}}" class="nav-card" hx-get="/{{.ID}}" hx-target="#page-wrapper" hx-push-url="true">
+      <div class="nav-card-icon" aria-hidden="true">{{raw .NavIcon}}</div>
+      <span class="nav-card-label">{{.Title}}</span>
+    </a>
+    {{end}}
+  </nav>
+</div>
+{{end}}

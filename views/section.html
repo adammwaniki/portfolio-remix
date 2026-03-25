@@ -1,0 +1,13 @@
+{{define "section.html"}}
+<div class="page active" id="page-{{.Section.ID}}">
+  <div class="section-header">
+    <h1>{{.Section.Title}}</h1>
+    <p>{{.Section.Subtitle}}</p>
+  </div>
+  <div class="carousel" role="list">
+    {{range .Section.Cards}}
+    {{template "card.html" (dict "SectionID" $.Section.ID "Card" .)}}
+    {{end}}
+  </div>
+</div>
+{{end}}
