@@ -10,7 +10,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
+<body hx-on:htmx:before-request="closeMenu()"
+      hx-on:htmx:after-settle="window.scrollTo(0,0)"
+      hx-on:htmx:pushed-into-history="updateNav()"
+      hx-on:htmx:history-restore="closeMenu(); updateNav()"
+      hx-on:htmx:after-request="var t=event.detail.xhr.getResponseHeader('HX-Title'); if(t) document.title=t"
+      hx-on:keydown="if(event.key==='Escape') closeMenu()">
 
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
@@ -21,7 +26,31 @@
   {{template "nav-menu.html" .}}
 
   <script src="https://unpkg.com/htmx.org@2.0.4" defer></script>
-  <script src="/static/app.js" defer></script>
+  <script>
+  function toggleMenu() {
+    var open = document.body.classList.toggle('menu-open');
+    var btn = document.querySelector('.menu-toggle');
+    if (btn) {
+      btn.setAttribute('aria-expanded', open);
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    }
+  }
+  function closeMenu() {
+    document.body.classList.remove('menu-open');
+    var btn = document.querySelector('.menu-toggle');
+    if (btn) {
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-label', 'Open menu');
+    }
+  }
+  function updateNav() {
+    var p = location.pathname;
+    document.querySelectorAll('.nav-menu a').forEach(function(a) {
+      var h = a.getAttribute('href');
+      a.classList.toggle('current', h === p || (h !== '/' && p.startsWith(h + '/')));
+    });
+  }
+  </script>
 
 </body>
 </html>
