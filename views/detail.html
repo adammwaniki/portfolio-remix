@@ -1,0 +1,10 @@
+{{define "detail.html"}}
+<div class="detail-view active">
+  <div class="detail-hero">{{raw .Card.IconSVG}}</div>
+  <div class="detail-meta">
+    <h1 class="detail-title">{{.Card.Title}}</h1>
+    <p class="detail-subtitle">{{.Card.Subtitle}}</p>
+  </div>
+  <div class="detail-content">{{raw .Card.Detail}}</div>
+</div>
+{{end}}

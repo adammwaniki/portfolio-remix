@@ -1,0 +1,15 @@
+{{define "card.html"}}
+<a href="/{{.SectionID}}/{{.Card.ID}}"
+   class="content-card"
+   role="listitem"
+   hx-get="/{{.SectionID}}/{{.Card.ID}}"
+   hx-target="#page-wrapper"
+   hx-push-url="true">
+  <div class="card-image">{{raw .Card.IconSVG}}</div>
+  <div class="card-body">
+    <span class="card-title">{{.Card.Title}}</span>
+    <span class="card-subtitle">{{.Card.Subtitle}}</span>
+    <span class="card-description">{{.Card.Description}}</span>
+  </div>
+</a>
+{{end}}

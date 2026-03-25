@@ -1,0 +1,13 @@
+{{define "nav-menu.html"}}
+<div class="nav-overlay" id="nav-overlay"></div>
+<nav class="nav-menu" id="nav-menu" aria-label="Main navigation">
+  <a href="/" hx-get="/" hx-target="#page-wrapper" hx-push-url="true">Home</a>
+  {{range .Sections}}
+  <a href="/{{.ID}}"
+     hx-get="/{{.ID}}"
+     hx-target="#page-wrapper"
+     hx-push-url="true"
+     {{if eq $.Page .ID}}class="current" aria-current="page"{{end}}>{{.Title}}</a>
+  {{end}}
+</nav>
+{{end}}

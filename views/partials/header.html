@@ -1,0 +1,24 @@
+{{define "header.html"}}
+<header>
+  <a href="/" class="header-left" hx-get="/" hx-target="#page-wrapper" hx-push-url="true">
+    <div class="logo-mark" aria-hidden="true">AM</div>
+    <span class="logo-name">Adam Mwaniki</span>
+  </a>
+  <div class="header-right">
+    {{if .IsDetail}}
+    <a href="{{.BackURL}}" class="back-btn visible" hx-get="{{.BackURL}}" hx-target="#page-wrapper" hx-push-url="true">
+      <svg viewBox="0 0 16 16"><polyline points="10,2 4,8 10,14"/></svg>
+      Back
+    </a>
+    {{else if ne .Page "home"}}
+    <button class="menu-toggle visible" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    {{else}}
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    {{end}}
+  </div>
+</header>
+{{end}}
