@@ -1,0 +1,10 @@
+name = "portfolio-remix"
+main = "src/worker.js"
+compatibility_date = "2025-01-01"
+
+[build]
+command = "go run ./cmd/build"
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
