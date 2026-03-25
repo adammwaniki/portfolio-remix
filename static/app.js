@@ -61,9 +61,23 @@
   // Close menu before HTMX navigations
   document.body.addEventListener('htmx:beforeRequest', closeMenu);
 
-  // Scroll to top after HTMX swaps
+  // Scroll to top and update nav menu after HTMX swaps
   document.body.addEventListener('htmx:afterSettle', function () {
     window.scrollTo(0, 0);
+
+    var currentPath = window.location.pathname;
+    var links = document.querySelectorAll('.nav-menu a');
+    for (var i = 0; i < links.length; i++) {
+      var href = links[i].getAttribute('href');
+      var isCurrent = href === currentPath || (href !== '/' && currentPath.startsWith(href + '/'));
+      if (isCurrent) {
+        links[i].classList.add('current');
+        links[i].setAttribute('aria-current', 'page');
+      } else {
+        links[i].classList.remove('current');
+        links[i].removeAttribute('aria-current');
+      }
+    }
   });
 
   // Update document title from server response header
