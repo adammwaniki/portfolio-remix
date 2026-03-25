@@ -136,8 +136,9 @@ export default {
     }
 
     const isHtmx = request.headers.get("HX-Request") === "true";
+    const isHistoryRestore = request.headers.get("HX-History-Restore-Request") === "true";
 
-    if (isHtmx) {
+    if (isHtmx && !isHistoryRestore) {
       let path = url.pathname;
       if (path !== "/" && path.endsWith("/")) {
         path = path.slice(0, -1);

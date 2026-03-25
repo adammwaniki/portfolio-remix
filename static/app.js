@@ -1,17 +1,14 @@
 // ========================================
-// Menu — uses event delegation so it
-// survives HTMX swaps of #page-wrapper
+// Menu — all DOM refs are re-queried on
+// every call so they survive HTMX swaps
+// AND history restoration (which replaces
+// the entire body's children).
 // ========================================
 (function () {
-  var menu = document.getElementById('nav-menu');
-  var overlay = document.getElementById('nav-overlay');
-
-  function getToggle() {
-    return document.querySelector('.menu-toggle');
-  }
-
   function openMenu(toggle) {
-    if (!toggle) toggle = getToggle();
+    if (!toggle) toggle = document.querySelector('.menu-toggle');
+    var menu = document.getElementById('nav-menu');
+    var overlay = document.getElementById('nav-overlay');
     if (!toggle || !menu || !overlay) return;
     // Force reflow so the browser commits initial styles before the
     // transition starts — fixes first-open after HTMX DOM insertion.
@@ -26,7 +23,9 @@
   }
 
   function closeMenu() {
-    var toggle = getToggle();
+    var toggle = document.querySelector('.menu-toggle');
+    var menu = document.getElementById('nav-menu');
+    var overlay = document.getElementById('nav-overlay');
     if (toggle) {
       toggle.classList.remove('active');
       toggle.setAttribute('aria-expanded', 'false');
@@ -36,7 +35,7 @@
     if (overlay) overlay.classList.remove('active');
   }
 
-  // Delegate click on toggle — works even after DOM replacement
+  // All clicks delegated to document — survives any DOM replacement
   document.addEventListener('click', function (e) {
     var toggle = e.target.closest('.menu-toggle');
     if (toggle) {
@@ -46,19 +45,15 @@
       } else {
         openMenu(toggle);
       }
+      return;
+    }
+    if (e.target.closest('#nav-overlay')) {
+      closeMenu();
     }
   });
 
-  // Overlay click closes menu
-  if (overlay) {
-    overlay.addEventListener('click', closeMenu);
-  }
-
-  // Escape key closes menu
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-      closeMenu();
-    }
+    if (e.key === 'Escape') closeMenu();
   });
 
   function updateNavHighlight() {
@@ -88,20 +83,14 @@
   // Update nav highlight after URL is pushed (fires after afterSettle)
   document.body.addEventListener('htmx:pushedIntoHistory', updateNavHighlight);
 
+  // Update nav highlight after HTMX restores from history cache
+  document.body.addEventListener('htmx:historyRestore', updateNavHighlight);
+
   // Update document title from server response header
   document.body.addEventListener('htmx:afterRequest', function (e) {
     var title = e.detail.xhr.getResponseHeader('HX-Title');
     if (title) {
       document.title = title;
     }
-  });
-
-  // Browser back/forward — re-fetch the page content
-  window.addEventListener('popstate', function () {
-    var wrapper = document.getElementById('page-wrapper');
-    if (wrapper) {
-      htmx.ajax('GET', window.location.pathname, { target: '#page-wrapper', swap: 'innerHTML' });
-    }
-    updateNavHighlight();
   });
 })();

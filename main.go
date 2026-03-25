@@ -72,7 +72,7 @@ func isHTMX(r *http.Request) bool {
 
 // renderPage renders a full page or just the fragment if HTMX.
 func renderPage(w http.ResponseWriter, r *http.Request, fragmentName string, data any) {
-	if isHTMX(r) {
+	if isHTMX(r) && r.Header.Get("HX-History-Restore-Request") != "true" {
 		// Send title via header so JS can update document.title
 		if d, ok := data.(map[string]any); ok {
 			if title, ok := d["Title"].(string); ok {
