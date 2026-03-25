@@ -11,11 +11,11 @@
       Back
     </a>
     {{else if ne .Page "home"}}
-    <button class="menu-toggle visible" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+    <button class="menu-toggle visible" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu" hx-on:click="toggleMenu()">
       <span class="bar"></span><span class="bar"></span><span class="bar"></span>
     </button>
     {{else}}
-    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu" hx-on:click="toggleMenu()">
       <span class="bar"></span><span class="bar"></span><span class="bar"></span>
     </button>
     {{end}}

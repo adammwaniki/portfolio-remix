@@ -1,5 +1,5 @@
 {{define "nav-menu.html"}}
-<div class="nav-overlay" id="nav-overlay"></div>
+<div class="nav-overlay" id="nav-overlay" hx-on:click="closeMenu()"></div>
 <nav class="nav-menu" id="nav-menu" aria-label="Main navigation">
   <a href="/" hx-get="/" hx-target="#page-wrapper" hx-push-url="true">Home</a>
   {{range .Sections}}
