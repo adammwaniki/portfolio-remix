@@ -1,4 +1,7 @@
 (function () {
+  if (window.__menuInit) return;
+  window.__menuInit = true;
+
   function closeMenu() {
     var toggle = document.querySelector('.menu-toggle');
     var menu = document.getElementById('nav-menu');
@@ -13,14 +16,12 @@
   }
 
   document.addEventListener('click', function (e) {
-    // Hamburger toggle
     var toggle = e.target.closest('.menu-toggle');
     if (toggle) {
       var menu = document.getElementById('nav-menu');
       var overlay = document.getElementById('nav-overlay');
       if (!menu || !overlay) return;
 
-      // Menu is the source of truth (it persists, toggle gets replaced by HTMX)
       if (menu.classList.contains('active')) {
         closeMenu();
       } else {
@@ -33,7 +34,6 @@
       return;
     }
 
-    // Overlay click closes menu
     if (e.target.closest('#nav-overlay')) {
       closeMenu();
     }
