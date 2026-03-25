@@ -10,9 +10,12 @@
     return document.querySelector('.menu-toggle');
   }
 
-  function openMenu() {
-    var toggle = getToggle();
+  function openMenu(toggle) {
+    if (!toggle) toggle = getToggle();
     if (!toggle || !menu || !overlay) return;
+    // Force reflow so the browser commits initial styles before the
+    // transition starts — fixes first-open after HTMX DOM insertion.
+    toggle.offsetHeight;
     toggle.classList.add('active');
     menu.classList.add('active');
     overlay.classList.add('active');
@@ -35,13 +38,13 @@
 
   // Delegate click on toggle — works even after DOM replacement
   document.addEventListener('click', function (e) {
-    if (e.target.closest('.menu-toggle')) {
+    var toggle = e.target.closest('.menu-toggle');
+    if (toggle) {
       e.preventDefault();
-      var toggle = getToggle();
-      if (toggle && toggle.classList.contains('active')) {
+      if (toggle.classList.contains('active')) {
         closeMenu();
       } else {
-        openMenu();
+        openMenu(toggle);
       }
     }
   });
