@@ -1,2 +1,5 @@
 dist/
 src/worker.js
+
+# LLM
+.claude
