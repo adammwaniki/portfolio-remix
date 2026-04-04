@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"html/template"
 	"log"
@@ -25,7 +26,10 @@ func main() {
 			}
 			return m
 		},
-		"add": func(a, b int) int { return a + b },
+		"add":     func(a, b int) int { return a + b },
+		"tagSlug": content.TagSlug,
+		"join":    strings.Join,
+		"lower":   strings.ToLower,
 	}).ParseGlob("views/*.html")
 	if err != nil {
 		log.Fatal("parsing views: ", err)
@@ -44,6 +48,11 @@ func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
 	http.HandleFunc("/", handleHome)
+	http.HandleFunc("/tags", handleTags)
+	http.HandleFunc("/tags/", handleTagsBySlug)
+	http.HandleFunc("/contact", handleContact)
+	http.HandleFunc("/search-index.json", handleSearchIndex)
+
 	http.HandleFunc("/technical-notes", handleSection)
 	http.HandleFunc("/projects", handleSection)
 	http.HandleFunc("/musings", handleSection)
@@ -90,11 +99,14 @@ func handleHome(w http.ResponseWriter, r *http.Request) {
 	}
 
 	data := map[string]any{
-		"Page":     "home",
-		"Title":    "Adam Mwaniki \u2014 Software Engineer",
-		"Sections": content.Sections(),
-		"IsDetail": false,
-		"IsDark":   false,
+		"Page":         "home",
+		"Title":        "Adam Mwaniki | Software Engineer",
+		"Description":  "Adam Mwaniki | Software Engineer. I build software that's clear, maintainable and built to last.",
+		"CanonicalURL": content.SiteURL + "/",
+		"OGType":       "website",
+		"Sections":     content.Sections(),
+		"IsDetail":     false,
+		"IsDark":       false,
 	}
 	renderPage(w, r, data)
 }
@@ -109,12 +121,15 @@ func handleSection(w http.ResponseWriter, r *http.Request) {
 	}
 
 	data := map[string]any{
-		"Page":     sectionID,
-		"Title":    fmt.Sprintf("%s \u2014 Adam Mwaniki", section.Title),
-		"Section":  section,
-		"Sections": content.Sections(),
-		"IsDetail": false,
-		"IsDark":   section.IsDark,
+		"Page":         sectionID,
+		"Title":        fmt.Sprintf("%s | Adam Mwaniki", section.Title),
+		"Description":  section.Subtitle,
+		"CanonicalURL": content.SiteURL + "/" + sectionID,
+		"OGType":       "website",
+		"Section":      section,
+		"Sections":     content.Sections(),
+		"IsDetail":     false,
+		"IsDark":       section.IsDark,
 	}
 	renderPage(w, r, data)
 }
@@ -133,7 +148,6 @@ func handleDetail(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Find card index and next/prev for navigation
 	cardIndex := 0
 	var nextCard, prevCard map[string]any
 	for i, c := range section.Cards {
@@ -156,17 +170,96 @@ func handleDetail(w http.ResponseWriter, r *http.Request) {
 	}
 
 	data := map[string]any{
-		"Page":      sectionID,
-		"Title":     fmt.Sprintf("%s \u2014 Adam Mwaniki", card.Title),
-		"Section":   section,
-		"Card":      card,
-		"CardIndex": cardIndex + 1,
-		"NextCard":  nextCard,
-		"PrevCard":  prevCard,
-		"Sections":  content.Sections(),
-		"IsDetail":  true,
-		"IsDark":    section.IsDark,
-		"BackURL":   "/" + sectionID,
+		"Page":         sectionID,
+		"Title":        fmt.Sprintf("%s | Adam Mwaniki", card.Title),
+		"Description":  card.Description,
+		"CanonicalURL": content.SiteURL + "/" + sectionID + "/" + cardID,
+		"OGType":       "article",
+		"Section":      section,
+		"Card":         card,
+		"CardIndex":    cardIndex + 1,
+		"NextCard":     nextCard,
+		"PrevCard":     prevCard,
+		"RelatedCards": content.RelatedCards(sectionID, cardID, 3),
+		"Sections":     content.Sections(),
+		"IsDetail":     true,
+		"IsDark":       section.IsDark,
+		"BackURL":      "/" + sectionID,
 	}
 	renderPage(w, r, data)
+}
+
+func handleTags(w http.ResponseWriter, r *http.Request) {
+	data := map[string]any{
+		"Page":         "tags",
+		"Title":        "Tags | Adam Mwaniki",
+		"Description":  "Browse articles by topic across all sections.",
+		"CanonicalURL": content.SiteURL + "/tags",
+		"OGType":       "website",
+		"AllTags":      content.AllTags(),
+		"Sections":     content.Sections(),
+		"IsDetail":     false,
+		"IsDark":       false,
+	}
+	renderPage(w, r, data)
+}
+
+func handleTagsBySlug(w http.ResponseWriter, r *http.Request) {
+	slug := strings.TrimPrefix(r.URL.Path, "/tags/")
+	if slug == "" {
+		http.Redirect(w, r, "/tags", http.StatusFound)
+		return
+	}
+
+	tag := content.TagFromSlug(slug)
+	cards := content.CardsByTag(tag)
+	if len(cards) == 0 {
+		http.NotFound(w, r)
+		return
+	}
+
+	data := map[string]any{
+		"Page":         "tags",
+		"Title":        fmt.Sprintf("%s | Adam Mwaniki", tag),
+		"Description":  fmt.Sprintf("Articles tagged with \"%s\" on Adam Mwaniki's portfolio.", tag),
+		"CanonicalURL": content.SiteURL + "/tags/" + slug,
+		"OGType":       "website",
+		"Tag":          tag,
+		"TagCards":     cards,
+		"Sections":     content.Sections(),
+		"IsDetail":     false,
+		"IsDark":       false,
+	}
+	renderPage(w, r, data)
+}
+
+func handleContact(w http.ResponseWriter, r *http.Request) {
+	data := map[string]any{
+		"Page":         "contact",
+		"Title":        "Contact | Adam Mwaniki",
+		"Description":  "Get in touch with Adam Mwaniki | Software Engineer.",
+		"CanonicalURL": content.SiteURL + "/contact",
+		"OGType":       "website",
+		"Sections":     content.Sections(),
+		"IsDetail":     false,
+		"IsDark":       false,
+	}
+	renderPage(w, r, data)
+}
+
+func handleSearchIndex(w http.ResponseWriter, r *http.Request) {
+	var index []map[string]any
+	for _, s := range content.Sections() {
+		for _, c := range s.Cards {
+			index = append(index, map[string]any{
+				"title":       c.Title,
+				"description": c.Description,
+				"tags":        c.Tags,
+				"url":         "/" + s.ID + "/" + c.ID,
+				"section":     s.Title,
+			})
+		}
+	}
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(index)
 }

@@ -1,8 +1,8 @@
 {{define "detail.html"}}
-<article class="art-page">
+<article class="art-page" data-view-path="/{{.Section.ID}}/{{.Card.ID}}">
   <div class="art-top">
     <a class="art-back" href="{{.BackURL}}" hx-get="{{.BackURL}}" hx-target="#page-wrapper" hx-push-url="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
       {{.Section.Title}}
     </a>
     <div class="art-stag">{{.Section.Label}} <span>{{.Section.AccentLabel}}</span></div>
@@ -20,10 +20,47 @@
         <span class="art-meta-label">Reading</span>
         <span class="art-meta-value">{{.Card.ReadingTime}}</span>
       </div>
+      <div class="art-meta-dot"></div>
+      <div class="art-meta-item">
+        <span class="art-meta-label">Published</span>
+        <span class="art-meta-value">{{.Card.FormattedDate}}</span>
+      </div>
+      {{if .Card.FormattedUpdated}}
+      <div class="art-meta-dot"></div>
+      <div class="art-meta-item">
+        <span class="art-meta-label">Updated</span>
+        <span class="art-meta-value">{{.Card.FormattedUpdated}}</span>
+      </div>
+      {{end}}
     </div>
+    {{if .Card.DemoURL}}
+    <div class="art-demo">
+      <a href="{{.Card.DemoURL}}" target="_blank" rel="noopener noreferrer" class="art-demo-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="14" height="14"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+        View Project
+      </a>
+    </div>
+    {{end}}
+    <div class="art-view-count" id="view-count"></div>
   </div>
   <div class="art-divider"></div>
   <div class="prose">{{raw .Card.Detail}}</div>
+
+  {{if .RelatedCards}}
+  <div class="art-related">
+    <h2 class="art-related-title">Related Articles</h2>
+    <div class="art-related-grid">
+      {{range .RelatedCards}}
+      <a class="art-related-card" href="/{{.SectionID}}/{{.Card.ID}}" hx-get="/{{.SectionID}}/{{.Card.ID}}" hx-target="#page-wrapper" hx-push-url="true">
+        <div class="art-related-section">{{.SectionTitle}}</div>
+        <div class="art-related-name">{{.Card.Title}}</div>
+        <div class="art-related-desc">{{.Card.Description}}</div>
+      </a>
+      {{end}}
+    </div>
+  </div>
+  {{end}}
+
   {{if .NextCard}}
   <div class="art-next">
     <a class="next-card" href="{{.NextCard.URL}}" hx-get="{{.NextCard.URL}}" hx-target="#page-wrapper" hx-push-url="true">
@@ -31,7 +68,7 @@
         <div class="next-label">Next</div>
         <div class="next-title">{{.NextCard.Title}}</div>
       </div>
-      <svg class="next-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <svg class="next-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
   </div>
   {{else if .PrevCard}}
@@ -41,7 +78,7 @@
         <div class="next-label">Previous</div>
         <div class="next-title">{{.PrevCard.Title}}</div>
       </div>
-      <svg class="next-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <svg class="next-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
   </div>
   {{end}}

@@ -3,31 +3,90 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Adam Mwaniki — Software Engineer. I build software that's clear, maintainable and built to last.">
+  <meta name="description" content="{{.Description}}">
   <title>{{.Title}}</title>
+
+  <!-- Canonical -->
+  <link rel="canonical" href="{{.CanonicalURL}}">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{.Title}}">
+  <meta property="og:description" content="{{.Description}}">
+  <meta property="og:url" content="{{.CanonicalURL}}">
+  <meta property="og:type" content="{{.OGType}}">
+  <meta property="og:site_name" content="Adam Mwaniki">
+  <meta property="og:image" content="https://mwaniki.dev/static/android-chrome-512x512.png">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{.Title}}">
+  <meta name="twitter:description" content="{{.Description}}">
+  <meta name="twitter:image" content="https://mwaniki.dev/static/android-chrome-512x512.png">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="Adam Mwaniki" href="https://mwaniki.dev/feed.xml">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Great+Vibes&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
   <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
   <link rel="manifest" href="/static/site.webmanifest">
+  <meta name="theme-color" content="#F5F3EF">
+
+  <!-- Styles -->
   <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
+
+  <!-- JSON-LD Structured Data -->
+  {{if .IsDetail}}<script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"{{.Card.Title}}","description":"{{.Card.Description}}","datePublished":"{{.Card.Date}}",{{if .Card.Updated}}"dateModified":"{{.Card.Updated}}",{{end}}"author":{"@type":"Person","name":"Adam Mwaniki","url":"https://mwaniki.dev"},"publisher":{"@type":"Person","name":"Adam Mwaniki"}}
+  </script>
+  {{else if eq .Page "home"}}<script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebSite","name":"Adam Mwaniki","url":"https://mwaniki.dev","description":"Software Engineer. I build software that's clear, maintainable and built to last.","author":{"@type":"Person","name":"Adam Mwaniki","jobTitle":"Software Engineer","url":"https://mwaniki.dev"}}
+  </script>
+  {{end}}
 </head>
 <body{{if .IsDark}} class="dark"{{end}}
       hx-on:htmx:before-request="closeMobileNav()"
-      hx-on:htmx:after-settle="window.scrollTo({top:0,behavior:'instant'}); updateDarkMode();"
-      hx-on:htmx:history-restore="closeMobileNav(); updateDarkMode();"
+      hx-on:htmx:after-settle="window.scrollTo({top:0,behavior:'instant'}); updateDarkMode(); initProgress();"
+      hx-on:htmx:history-restore="closeMobileNav(); updateDarkMode(); initProgress();"
       hx-on:htmx:after-request="var t=event.detail.xhr.getResponseHeader('HX-Title'); if(t) document.title=t"
-      hx-on:keydown="if(event.key==='Escape') closeMobileNav()">
+      hx-on:keydown="if(event.key==='Escape'){closeMobileNav();closeSearch();}">
 
-  <div id="page-wrapper">
+  <script>
+  (function(){var p=localStorage.getItem('darkMode');if(p==='true')document.body.classList.add('dark');else if(p==='false')document.body.classList.remove('dark');else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches)document.body.classList.add('dark');})();
+  </script>
+
+  <div class="reading-progress" id="reading-progress"></div>
+
+  <main id="page-wrapper">
     {{template "page-content" .}}
+  </main>
+
+  <!-- Search Modal -->
+  <div class="search-overlay" id="search-overlay" onclick="if(event.target===this)closeSearch()">
+    <div class="search-modal">
+      <input type="text" class="search-input" id="search-input" placeholder="Search articles..." autocomplete="off" oninput="doSearch(this.value)">
+      <div class="search-results" id="search-results"></div>
+      <div class="search-hint">Press <kbd>Esc</kbd> to close</div>
+    </div>
   </div>
 
   <script src="https://unpkg.com/htmx.org@2.0.4" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-go.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-sql.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js" defer></script>
   <script>
+  /* -- Mobile Nav -- */
   function toggleMobileNav() {
     var mn = document.querySelector('.mobile-nav');
     var hb = document.querySelector('.hamburger');
@@ -43,10 +102,120 @@
     if (hb) hb.classList.remove('is-open');
     document.body.style.overflow = '';
   }
-  function updateDarkMode() {
-    var el = document.querySelector('[data-dark]');
-    if (el) document.body.classList.toggle('dark', el.dataset.dark === 'true');
+
+  /* -- Dark Mode -- */
+  function isDarkPreferred() {
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   }
+  function updateDarkMode() {
+    var pref = localStorage.getItem('darkMode');
+    if (pref !== null) {
+      document.body.classList.toggle('dark', pref === 'true');
+    } else if (isDarkPreferred()) {
+      document.body.classList.add('dark');
+    } else {
+      var el = document.querySelector('[data-dark]');
+      if (el) document.body.classList.toggle('dark', el.dataset.dark === 'true');
+    }
+    updateToggleIcon();
+  }
+  // Listen for OS theme changes (e.g. user switches system appearance)
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+      if (localStorage.getItem('darkMode') === null) {
+        document.body.classList.toggle('dark', e.matches);
+        updateToggleIcon();
+      }
+    });
+  }
+  function toggleDarkMode() {
+    var isDark = document.body.classList.toggle('dark');
+    localStorage.setItem('darkMode', isDark.toString());
+    updateToggleIcon();
+  }
+  function updateToggleIcon() {
+    var btn = document.querySelector('.dark-toggle');
+    if (!btn) return;
+    var isDark = document.body.classList.contains('dark');
+    btn.querySelector('.icon-sun').style.display = isDark ? 'none' : 'block';
+    btn.querySelector('.icon-moon').style.display = isDark ? 'block' : 'none';
+  }
+
+  /* -- Reading Progress -- */
+  function initProgress() {
+    var bar = document.getElementById('reading-progress');
+    if (!bar) return;
+    var article = document.querySelector('.art-page');
+    bar.style.width = article ? '0%' : '0';
+    bar.style.display = article ? 'block' : 'none';
+  }
+  function updateProgress() {
+    var bar = document.getElementById('reading-progress');
+    var article = document.querySelector('.art-page');
+    if (!bar || !article) return;
+    var rect = article.getBoundingClientRect();
+    var total = article.scrollHeight - window.innerHeight;
+    if (total <= 0) { bar.style.width = '100%'; return; }
+    var pct = Math.min(Math.max(-rect.top / total * 100, 0), 100);
+    bar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress, {passive: true});
+  document.addEventListener('DOMContentLoaded', function() { initProgress(); updateToggleIcon(); });
+
+  /* -- Search -- */
+  var searchIndex = null;
+  var fuse = null;
+  function openSearch() {
+    var overlay = document.getElementById('search-overlay');
+    if (!overlay) return;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    var input = document.getElementById('search-input');
+    if (input) { input.value = ''; setTimeout(function(){ input.focus(); }, 50); }
+    document.getElementById('search-results').innerHTML = '';
+    if (!searchIndex) {
+      fetch('/search-index.json').then(function(r){return r.json()}).then(function(data){
+        searchIndex = data;
+        fuse = new Fuse(data, {keys:['title','description','tags','section'],threshold:0.4});
+      });
+    }
+  }
+  function closeSearch() {
+    var overlay = document.getElementById('search-overlay');
+    if (!overlay) return;
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function doSearch(q) {
+    var el = document.getElementById('search-results');
+    if (!fuse || !q.trim()) { el.innerHTML = ''; return; }
+    var results = fuse.search(q, {limit: 8});
+    if (!results.length) { el.innerHTML = '<div class="search-empty">No results found</div>'; return; }
+    el.innerHTML = results.map(function(r) {
+      var item = r.item;
+      return '<a class="search-result" href="' + item.url + '" hx-get="' + item.url + '" hx-target="#page-wrapper" hx-push-url="true" onclick="closeSearch()">' +
+        '<div class="search-result-section">' + item.section + '</div>' +
+        '<div class="search-result-title">' + item.title + '</div>' +
+        '<div class="search-result-desc">' + item.description + '</div>' +
+        '</a>';
+    }).join('');
+    if (typeof htmx !== 'undefined') htmx.process(el);
+  }
+  document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
+  });
+
+  /* -- View Counter -- */
+  function loadViewCount() {
+    var el = document.querySelector('[data-view-path]');
+    if (!el) return;
+    var path = el.dataset.viewPath;
+    fetch('/api/views' + path).then(function(r){return r.json()}).then(function(data){
+      var counter = document.getElementById('view-count');
+      if (counter && data.views) counter.textContent = data.views + ' views';
+    }).catch(function(){});
+  }
+  document.addEventListener('DOMContentLoaded', loadViewCount);
   </script>
 
 </body>

@@ -1,3 +1,5 @@
 module github.com/adammwaniki/portfolio-remix
 
 go 1.24.2
+
+require github.com/yuin/goldmark v1.8.2

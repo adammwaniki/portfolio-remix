@@ -18,9 +18,9 @@
   <div class="home-frame"><div class="home-frame-inner">
     {{range $i, $s := .Sections}}
     <a class="home-tile" href="/{{$s.ID}}" hx-get="/{{$s.ID}}" hx-target="#page-wrapper" hx-push-url="true">
-      <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
       <div class="home-tile-num">{{add $i 1}}</div>
-      <h3>{{$s.Title}}</h3>
+      <h2>{{$s.Title}}</h2>
       <p>{{$s.TileDesc}}</p>
     </a>
     {{end}}

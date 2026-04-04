@@ -4,5 +4,7 @@
   {{range .Sections}}
   <a href="/{{.ID}}" hx-get="/{{.ID}}" hx-target="#page-wrapper" hx-push-url="true">{{.Title}}</a>
   {{end}}
+  <a href="/tags" hx-get="/tags" hx-target="#page-wrapper" hx-push-url="true">Tags</a>
+  <a href="/contact" hx-get="/contact" hx-target="#page-wrapper" hx-push-url="true">Contact</a>
 </div>
 {{end}}

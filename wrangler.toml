@@ -8,3 +8,10 @@ command = "go run ./cmd/build"
 [assets]
 directory = "./dist"
 binding = "ASSETS"
+
+# View counter KV namespace
+# Create with: wrangler kv namespace create VIEWS
+# Then paste the id below
+# [[kv_namespaces]]
+# binding = "VIEWS"
+# id = "YOUR_KV_NAMESPACE_ID"

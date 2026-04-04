@@ -1,0 +1,32 @@
+{{define "tags.html"}}
+  <header class="pg-header">
+    <div class="pg-header-label">explore <span>topics</span></div>
+    {{if .Tag}}
+    <h1>{{.Tag}}</h1>
+    <p>Articles tagged with "{{.Tag}}"</p>
+    {{else}}
+    <h1>Tags</h1>
+    <p>Browse articles by topic across all sections.</p>
+    {{end}}
+  </header>
+  {{if .Tag}}
+  <div class="tags-back">
+    <a href="/tags" hx-get="/tags" hx-target="#page-wrapper" hx-push-url="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="14" height="14"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      All tags
+    </a>
+  </div>
+  <div class="cards-grid">
+    {{range .TagCards}}
+    {{template "card.html" (dict "SectionID" .SectionID "Card" .Card "IsDark" false "IsAlt" false)}}
+    {{end}}
+  </div>
+  {{else}}
+  <div class="tags-cloud">
+    {{range .AllTags}}
+    <a class="tag-pill" href="/tags/{{tagSlug .}}" hx-get="/tags/{{tagSlug .}}" hx-target="#page-wrapper" hx-push-url="true">{{.}}</a>
+    {{end}}
+  </div>
+  {{end}}
+{{template "footer.html" .}}
+{{end}}
