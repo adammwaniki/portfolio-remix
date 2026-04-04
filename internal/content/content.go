@@ -160,7 +160,7 @@ func projects() Section {
 		NavTitle:    "Projects",
 		Subtitle:    "Things I've built, shipped, and maintained.",
 		TileDesc:    "Built, shipped, maintained.",
-		Label:       "\u25C6",
+		Label:       "02",
 		AccentLabel: "projects",
 		IsDark:      false,
 		Cards: []Card{
@@ -210,7 +210,7 @@ func musings() Section {
 		NavTitle:    "Musings",
 		Subtitle:    "Thoughts on software, design, work and everything in between.",
 		TileDesc:    "Software, design, everything between.",
-		Label:       "02",
+		Label:       "03",
 		AccentLabel: "musings",
 		IsDark:      false,
 		Cards: []Card{
@@ -258,9 +258,9 @@ func theBullshitters() Section {
 		ID:          "the-bullshitters",
 		Title:       "The Bullshitters",
 		NavTitle:    "Bullshitters",
-		Subtitle:    "Calling it out — hype, buzzwords and things that don't hold up under scrutiny.",
-		TileDesc:    "Hype that doesn't hold up.",
-		Label:       "03",
+		Subtitle:    "Absurdities — ideas so strange you have to stop and actually think about them.",
+		TileDesc:    "Thoughts I should've kept to myself.",
+		Label:       "04",
 		AccentLabel: "bs",
 		IsDark:      true,
 		Cards: []Card{

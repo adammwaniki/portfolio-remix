@@ -141,8 +141,9 @@ body.dark .ft-links a:hover { color: var(--text-inverse); }
 .home-adam { font-family: var(--font-heading); font-size: clamp(3.4rem,7vw,6.5rem);
   font-weight: 300; line-height: 0.9; color: var(--text-primary);
   letter-spacing: -0.035em; margin-bottom: 0.15em; }
-.home-mwaniki { font-family: var(--font-vibes); font-size: clamp(2.8rem,5.5vw,5rem);
-  font-weight: 400; line-height: 1; color: var(--accent-olive); margin-left: 0.05em; }
+.home-mwaniki { font-family: var(--font-heading); font-size: clamp(3.4rem,7vw,6.5rem);
+  font-weight: 300; line-height: 0.9; color: var(--accent-olive);
+  letter-spacing: -0.035em; margin-bottom: 0.15em; }
 .home-right { padding-bottom: 0.5rem; align-self: end; margin-top: 10%; }
 .home-desc { font-size: 1rem; font-weight: 300; color: var(--text-secondary);
   line-height: 1.8; margin-bottom: 2rem; max-width: 400px; }

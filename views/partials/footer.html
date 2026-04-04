@@ -1,7 +1,8 @@
 {{define "footer.html"}}
 <footer>
   <div class="ft-inner">
-    <div class="ft-text">&copy; 2026 <a href="/" hx-get="/" hx-target="#page-wrapper" hx-push-url="true">Adam Mwaniki</a></div>
+    <div class="ft-text">&copy; <span id="year"></span><script>document.getElementById("year").textContent = new Date().getFullYear();
+</script> <a href="/" hx-get="/" hx-target="#page-wrapper" hx-push-url="true">Adam Mwaniki</a></div>
     <div class="ft-links">
       <a href="/" hx-get="/" hx-target="#page-wrapper" hx-push-url="true">Home</a>
       {{range .Sections}}
