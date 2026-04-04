@@ -14,7 +14,6 @@ import (
 var tmpl *template.Template
 
 func main() {
-	// Parse all templates
 	var err error
 	tmpl, err = template.New("").Funcs(template.FuncMap{
 		"raw": func(s string) template.HTML { return template.HTML(s) },
@@ -26,6 +25,7 @@ func main() {
 			}
 			return m
 		},
+		"add": func(a, b int) int { return a + b },
 	}).ParseGlob("views/*.html")
 	if err != nil {
 		log.Fatal("parsing views: ", err)
@@ -40,18 +40,15 @@ func main() {
 		log.Fatal("parsing partials: ", err)
 	}
 
-	// Static files
 	fs := http.FileServer(http.Dir("static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
-	// Routes
 	http.HandleFunc("/", handleHome)
 	http.HandleFunc("/technical-notes", handleSection)
 	http.HandleFunc("/projects", handleSection)
 	http.HandleFunc("/musings", handleSection)
 	http.HandleFunc("/the-bullshitters", handleSection)
 
-	// Detail routes: /section-id/card-id
 	http.HandleFunc("/technical-notes/", handleDetail)
 	http.HandleFunc("/projects/", handleDetail)
 	http.HandleFunc("/musings/", handleDetail)
@@ -65,27 +62,22 @@ func main() {
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
 
-// isHTMX checks if the request was made by HTMX.
 func isHTMX(r *http.Request) bool {
 	return r.Header.Get("HX-Request") == "true"
 }
 
-// renderPage renders a full page or just the fragment if HTMX.
-func renderPage(w http.ResponseWriter, r *http.Request, fragmentName string, data any) {
+func renderPage(w http.ResponseWriter, r *http.Request, data any) {
 	if isHTMX(r) && r.Header.Get("HX-History-Restore-Request") != "true" {
-		// Send title via header so JS can update document.title
 		if d, ok := data.(map[string]any); ok {
 			if title, ok := d["Title"].(string); ok {
 				w.Header().Set("HX-Title", title)
 			}
 		}
-		// Return the header + main + footer fragment for swap
 		if err := tmpl.ExecuteTemplate(w, "page-content", data); err != nil {
 			http.Error(w, err.Error(), 500)
 		}
 		return
 	}
-	// Full page: wrap in layout
 	if err := tmpl.ExecuteTemplate(w, "layout.html", data); err != nil {
 		http.Error(w, err.Error(), 500)
 	}
@@ -99,11 +91,12 @@ func handleHome(w http.ResponseWriter, r *http.Request) {
 
 	data := map[string]any{
 		"Page":     "home",
-		"Title":    "Adam Mwaniki | Software Engineer",
+		"Title":    "Adam Mwaniki \u2014 Software Engineer",
 		"Sections": content.Sections(),
 		"IsDetail": false,
+		"IsDark":   false,
 	}
-	renderPage(w, r, "home.html", data)
+	renderPage(w, r, data)
 }
 
 func handleSection(w http.ResponseWriter, r *http.Request) {
@@ -117,19 +110,18 @@ func handleSection(w http.ResponseWriter, r *http.Request) {
 
 	data := map[string]any{
 		"Page":     sectionID,
-		"Title":    fmt.Sprintf("%s | Adam Mwaniki", section.Title),
+		"Title":    fmt.Sprintf("%s \u2014 Adam Mwaniki", section.Title),
 		"Section":  section,
 		"Sections": content.Sections(),
 		"IsDetail": false,
+		"IsDark":   section.IsDark,
 	}
-	renderPage(w, r, "section.html", data)
+	renderPage(w, r, data)
 }
 
 func handleDetail(w http.ResponseWriter, r *http.Request) {
-	// Parse /section-id/card-id
 	parts := strings.SplitN(strings.TrimPrefix(r.URL.Path, "/"), "/", 2)
 	if len(parts) != 2 || parts[1] == "" {
-		// Redirect to section if no card ID
 		http.Redirect(w, r, "/"+parts[0], http.StatusFound)
 		return
 	}
@@ -141,14 +133,40 @@ func handleDetail(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Find card index and next/prev for navigation
+	cardIndex := 0
+	var nextCard, prevCard map[string]any
+	for i, c := range section.Cards {
+		if c.ID == cardID {
+			cardIndex = i
+			if i > 0 {
+				prevCard = map[string]any{
+					"Title": section.Cards[i-1].Title,
+					"URL":   "/" + sectionID + "/" + section.Cards[i-1].ID,
+				}
+			}
+			if i < len(section.Cards)-1 {
+				nextCard = map[string]any{
+					"Title": section.Cards[i+1].Title,
+					"URL":   "/" + sectionID + "/" + section.Cards[i+1].ID,
+				}
+			}
+			break
+		}
+	}
+
 	data := map[string]any{
 		"Page":      sectionID,
-		"Title":     fmt.Sprintf("%s | Adam Mwaniki", card.Title),
+		"Title":     fmt.Sprintf("%s \u2014 Adam Mwaniki", card.Title),
 		"Section":   section,
 		"Card":      card,
+		"CardIndex": cardIndex + 1,
+		"NextCard":  nextCard,
+		"PrevCard":  prevCard,
 		"Sections":  content.Sections(),
 		"IsDetail":  true,
+		"IsDark":    section.IsDark,
 		"BackURL":   "/" + sectionID,
 	}
-	renderPage(w, r, "detail.html", data)
+	renderPage(w, r, data)
 }

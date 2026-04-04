@@ -1,13 +1,8 @@
 {{define "nav-menu.html"}}
-<div class="nav-overlay" id="nav-overlay" hx-on:click="closeMenu()"></div>
-<nav class="nav-menu" id="nav-menu" aria-label="Main navigation">
+<div class="mobile-nav">
   <a href="/" hx-get="/" hx-target="#page-wrapper" hx-push-url="true">Home</a>
   {{range .Sections}}
-  <a href="/{{.ID}}"
-     hx-get="/{{.ID}}"
-     hx-target="#page-wrapper"
-     hx-push-url="true"
-     {{if eq $.Page .ID}}class="current" aria-current="page"{{end}}>{{.Title}}</a>
+  <a href="/{{.ID}}" hx-get="/{{.ID}}" hx-target="#page-wrapper" hx-push-url="true">{{.Title}}</a>
   {{end}}
-</nav>
+</div>
 {{end}}

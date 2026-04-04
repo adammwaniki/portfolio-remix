@@ -1,15 +1,12 @@
 {{define "page-content"}}
 {{template "header.html" .}}
+{{template "nav-menu.html" .}}
 
-<main id="main-content">
-  {{if eq .Page "home"}}
-    {{template "home.html" .}}
-  {{else if .IsDetail}}
-    {{template "detail.html" .}}
-  {{else}}
-    {{template "section.html" .}}
-  {{end}}
-</main>
-
-{{template "footer.html" .}}
+{{if eq .Page "home"}}
+  {{template "home.html" .}}
+{{else if .IsDetail}}
+  {{template "detail.html" .}}
+{{else}}
+  {{template "section.html" .}}
+{{end}}
 {{end}}

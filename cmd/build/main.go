@@ -24,6 +24,7 @@ func main() {
 			}
 			return m
 		},
+		"add": func(a, b int) int { return a + b },
 	}
 
 	tmpl, err := template.New("").Funcs(funcMap).ParseGlob("views/*.html")
@@ -46,24 +47,40 @@ func main() {
 
 	pages := []page{
 		{"/", map[string]any{
-			"Page": "home", "Title": "Adam Mwaniki | Software Engineer",
-			"Sections": sections, "IsDetail": false,
+			"Page": "home", "Title": "Adam Mwaniki \u2014 Software Engineer",
+			"Sections": sections, "IsDetail": false, "IsDark": false,
 		}},
 	}
 
 	for _, s := range sections {
 		pages = append(pages, page{
 			"/" + s.ID, map[string]any{
-				"Page": s.ID, "Title": fmt.Sprintf("%s | Adam Mwaniki", s.Title),
+				"Page": s.ID, "Title": fmt.Sprintf("%s \u2014 Adam Mwaniki", s.Title),
 				"Section": s, "Sections": sections, "IsDetail": false,
+				"IsDark": s.IsDark,
 			},
 		})
-		for _, c := range s.Cards {
+		for i, c := range s.Cards {
+			var nextCard, prevCard map[string]any
+			if i > 0 {
+				prevCard = map[string]any{
+					"Title": s.Cards[i-1].Title,
+					"URL":   "/" + s.ID + "/" + s.Cards[i-1].ID,
+				}
+			}
+			if i < len(s.Cards)-1 {
+				nextCard = map[string]any{
+					"Title": s.Cards[i+1].Title,
+					"URL":   "/" + s.ID + "/" + s.Cards[i+1].ID,
+				}
+			}
 			pages = append(pages, page{
 				"/" + s.ID + "/" + c.ID, map[string]any{
-					"Page": s.ID, "Title": fmt.Sprintf("%s | Adam Mwaniki", c.Title),
+					"Page": s.ID, "Title": fmt.Sprintf("%s \u2014 Adam Mwaniki", c.Title),
 					"Section": s, "Card": c, "Sections": sections,
 					"IsDetail": true, "BackURL": "/" + s.ID,
+					"IsDark": s.IsDark, "CardIndex": i + 1,
+					"NextCard": nextCard, "PrevCard": prevCard,
 				},
 			})
 		}

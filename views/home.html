@@ -1,23 +1,30 @@
 {{define "home.html"}}
-<div class="page active" id="page-home">
-  <section class="hero" aria-label="Introduction">
-    <div class="hero-title">
-      <h1>Adam Mwaniki</h1>
-      <p class="role">Software Engineer</p>
+<div class="home-inner">
+  <div class="home-hero">
+    <div>
+      <div class="home-date">Est. 2026</div>
+      <h1 class="home-adam">Adam</h1>
+      <div class="home-mwaniki">Mwaniki</div>
     </div>
-    <div class="hero-description">
-      <p>I design and build software systems that are clear, maintainable and built to last.</p>
-      <p>Good software should be simple to use, easy to maintain and built for everyone.</p>
+    <div class="home-right">
+      <p class="home-desc">I build systems that are simple to use, easy to maintain, and quick to scale. <br>Great software doesn't announce itself; it just belongs.</p>
+      <p class="home-role">Software Engineer</p>
+      <div class="home-ethos">
+        <span>ethos</span>
+        <p>The most impactful systems arise from the simplest needs.</p>
+      </div>
     </div>
-  </section>
-  <div class="divider" role="separator"></div>
-  <nav class="nav-cards" aria-label="Sections">
-    {{range .Sections}}
-    <a href="/{{.ID}}" class="nav-card" hx-get="/{{.ID}}" hx-target="#page-wrapper" hx-push-url="true">
-      <div class="nav-card-icon" aria-hidden="true">{{raw .NavIcon}}</div>
-      <span class="nav-card-label">{{.Title}}</span>
+  </div>
+  <div class="home-frame"><div class="home-frame-inner">
+    {{range $i, $s := .Sections}}
+    <a class="home-tile" href="/{{$s.ID}}" hx-get="/{{$s.ID}}" hx-target="#page-wrapper" hx-push-url="true">
+      <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      <div class="home-tile-num">{{add $i 1}}</div>
+      <h3>{{$s.Title}}</h3>
+      <p>{{$s.TileDesc}}</p>
     </a>
     {{end}}
-  </nav>
+  </div></div>
 </div>
+{{template "footer.html" .}}
 {{end}}

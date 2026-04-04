@@ -3,52 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Adam Mwaniki — Software Engineer. I design and build software systems that are clear, maintainable and built to last.">
+  <meta name="description" content="Adam Mwaniki — Software Engineer. I build software that's clear, maintainable and built to last.">
   <title>{{.Title}}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Great+Vibes&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/style.css">
 </head>
-<body hx-on:htmx:before-request="closeMenu()"
-      hx-on:htmx:after-settle="window.scrollTo(0,0)"
-      hx-on:htmx:pushed-into-history="updateNav()"
-      hx-on:htmx:history-restore="closeMenu(); updateNav()"
+<body{{if .IsDark}} class="dark"{{end}}
+      hx-on:htmx:before-request="closeMobileNav()"
+      hx-on:htmx:after-settle="window.scrollTo({top:0,behavior:'instant'}); updateDarkMode();"
+      hx-on:htmx:history-restore="closeMobileNav(); updateDarkMode();"
       hx-on:htmx:after-request="var t=event.detail.xhr.getResponseHeader('HX-Title'); if(t) document.title=t"
-      hx-on:keydown="if(event.key==='Escape') closeMenu()">
-
-  <a href="#main-content" class="skip-link">Skip to main content</a>
+      hx-on:keydown="if(event.key==='Escape') closeMobileNav()">
 
   <div id="page-wrapper">
     {{template "page-content" .}}
   </div>
 
-  {{template "nav-menu.html" .}}
-
   <script src="https://unpkg.com/htmx.org@2.0.4" defer></script>
   <script>
-  function toggleMenu() {
-    var open = document.body.classList.toggle('menu-open');
-    var btn = document.querySelector('.menu-toggle');
-    if (btn) {
-      btn.setAttribute('aria-expanded', open);
-      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-    }
+  function toggleMobileNav() {
+    var mn = document.querySelector('.mobile-nav');
+    var hb = document.querySelector('.hamburger');
+    if (!mn || !hb) return;
+    mn.classList.toggle('open');
+    hb.classList.toggle('is-open');
+    document.body.style.overflow = mn.classList.contains('open') ? 'hidden' : '';
   }
-  function closeMenu() {
-    document.body.classList.remove('menu-open');
-    var btn = document.querySelector('.menu-toggle');
-    if (btn) {
-      btn.setAttribute('aria-expanded', 'false');
-      btn.setAttribute('aria-label', 'Open menu');
-    }
+  function closeMobileNav() {
+    var mn = document.querySelector('.mobile-nav');
+    var hb = document.querySelector('.hamburger');
+    if (mn) mn.classList.remove('open');
+    if (hb) hb.classList.remove('is-open');
+    document.body.style.overflow = '';
   }
-  function updateNav() {
-    var p = location.pathname;
-    document.querySelectorAll('.nav-menu a').forEach(function(a) {
-      var h = a.getAttribute('href');
-      a.classList.toggle('current', h === p || (h !== '/' && p.startsWith(h + '/')));
-    });
+  function updateDarkMode() {
+    var el = document.querySelector('[data-dark]');
+    if (el) document.body.classList.toggle('dark', el.dataset.dark === 'true');
   }
   </script>
 

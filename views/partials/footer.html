@@ -1,5 +1,13 @@
 {{define "footer.html"}}
 <footer>
-  <p>&copy; 2026 Adam Mwaniki</p>
+  <div class="ft-inner">
+    <div class="ft-text">&copy; 2026 <a href="/" hx-get="/" hx-target="#page-wrapper" hx-push-url="true">Adam Mwaniki</a></div>
+    <div class="ft-links">
+      <a href="/" hx-get="/" hx-target="#page-wrapper" hx-push-url="true">Home</a>
+      {{range .Sections}}
+      <a href="/{{.ID}}" hx-get="/{{.ID}}" hx-target="#page-wrapper" hx-push-url="true">{{.NavTitle}}</a>
+      {{end}}
+    </div>
+  </div>
 </footer>
 {{end}}

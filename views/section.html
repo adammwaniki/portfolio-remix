@@ -1,13 +1,19 @@
 {{define "section.html"}}
-<div class="page active" id="page-{{.Section.ID}}">
-  <div class="section-header">
+{{if eq .Section.ID "musings"}}
+<div class="musings-bg">
+{{end}}
+  <header class="pg-header{{if .Section.IsDark}} pg-header--dark{{end}}">
+    <div class="pg-header-label">{{.Section.Label}} <span>{{.Section.AccentLabel}}</span></div>
     <h1>{{.Section.Title}}</h1>
     <p>{{.Section.Subtitle}}</p>
-  </div>
-  <div class="carousel" role="list">
+  </header>
+  <div class="cards-grid">
     {{range .Section.Cards}}
-    {{template "card.html" (dict "SectionID" $.Section.ID "Card" .)}}
+    {{template "card.html" (dict "SectionID" $.Section.ID "Card" . "IsDark" $.Section.IsDark "IsAlt" (eq $.Section.ID "musings"))}}
     {{end}}
   </div>
+{{if eq .Section.ID "musings"}}
 </div>
+{{end}}
+{{template "footer.html" .}}
 {{end}}
