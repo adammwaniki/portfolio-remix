@@ -182,7 +182,7 @@ body.dark .home-desc { color: var(--accent-taupe); }
   font-style: italic; color: var(--text-tertiary); letter-spacing: 0.05em; margin-bottom: 2.5rem; }
 .home-ethos { padding-top: 2rem; border-top: 1px solid var(--border-light); }
 body.dark .home-ethos { border-top-color: rgba(255,255,255,0.1); }
-.home-ethos span { font-family: var(--font-accent); font-size: 1rem;
+.home-ethos span { font-family: var(--font-accent); font-size: 1.25rem;
   color: var(--accent-olive); display: block; margin-bottom: 0.5rem; }
 .home-ethos p { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 300;
   font-style: italic; color: var(--text-tertiary); line-height: 1.8; }
