@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 
 	"github.com/yuin/goldmark"
@@ -45,11 +46,14 @@ func LoadCardFromMarkdown(path string) (Card, error) {
 	}, nil
 }
 
-// LoadCardsFromDir reads all .md files from a directory in the given order.
+// LoadCardsFromDir reads all .md files from a directory.
+// Files whose IDs appear in order are loaded first in that order; any
+// remaining .md files in the directory are appended, sorted by date ascending.
 // If order is nil, files are loaded alphabetically.
 func LoadCardsFromDir(dir string, order []string) ([]Card, error) {
 	if order != nil {
 		cards := make([]Card, 0, len(order))
+		seen := make(map[string]bool, len(order))
 		for _, id := range order {
 			path := filepath.Join(dir, id+".md")
 			card, err := LoadCardFromMarkdown(path)
@@ -57,7 +61,32 @@ func LoadCardsFromDir(dir string, order []string) ([]Card, error) {
 				return nil, err
 			}
 			cards = append(cards, card)
+			seen[id] = true
 		}
+
+		entries, err := os.ReadDir(dir)
+		if err != nil {
+			return nil, err
+		}
+		var extras []Card
+		for _, e := range entries {
+			if e.IsDir() || !strings.HasSuffix(e.Name(), ".md") {
+				continue
+			}
+			id := strings.TrimSuffix(e.Name(), ".md")
+			if seen[id] {
+				continue
+			}
+			card, err := LoadCardFromMarkdown(filepath.Join(dir, e.Name()))
+			if err != nil {
+				return nil, err
+			}
+			extras = append(extras, card)
+		}
+		sort.Slice(extras, func(i, j int) bool {
+			return extras[i].Date < extras[j].Date
+		})
+		cards = append(cards, extras...)
 		return cards, nil
 	}
 
